@@ -1,0 +1,125 @@
+/* Styles untuk halaman Apparalang */
+.hunting-section {
+    background-color: rgba(230, 240, 250, 0.85); /* Warna dasar dengan sedikit transparansi */
+    flex: 1;
+    padding: 30px 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+/* Background image */
+.hunting-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../image/tes.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    z-index: -1; /* Menempatkan di belakang konten */
+}
+
+.hunting-title {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.hunting-title h2 {
+    display: inline-block;
+    background-color: #55788a;
+    color: white;
+    padding: 15px 50px;
+    border-radius: 15px;
+    font-size: 32px;
+    margin: 0;
+}
+
+.hunting-content {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    z-index: 2; /* Memastikan konten di atas background */
+}
+
+.hunting-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.hunting-image img {
+    max-width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 10px solid rgba(255, 255, 255, 0.8);
+}
+
+.hunting-description {
+    background-color: rgba(224, 232, 240, 0.9);
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hunting-description p {
+    color: #304258;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.hunting-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+    .hunting-image img {
+        max-width: 90%;
+    }
+    
+    .hunting-description {
+        padding: 15px 20px;
+    }
+    
+    .hunting-description p {
+        font-size: 15px;
+    }
+}
+
+.back-button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-button {
+    display: inline-block;
+    background-color: #55788a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+    background-color: #3c5a6c;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+}

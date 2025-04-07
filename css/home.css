@@ -1,0 +1,87 @@
+/* home.css - hanya untuk halaman home */
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #f0f0f0;
+    background-image: url('../image/tes.jpg');
+    background-size: cover;
+    background-position: center 30%; /* Turunkan 30% dari atas */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    background-color: rgba(42, 91, 218, 0.45); /* Pertahankan warna overlay biru */
+    color: white;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    transform: translateY(-50px);
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+}
+
+.hero h2 .greeting {
+    color: #304258;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.about-btn {
+    display: inline-block;
+    background-color: rgba(199, 217, 229, 0.7); /* 0.7 = 70% opacity */
+    color: #304258;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    padding: 5px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.about-btn:hover {
+    background-color: #5a7090;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 28px;
+    }
+    
+    .hero p {
+        font-size: 16px;
+    }
+    
+    /* Tambahkan style khusus untuk tombol about-btn di mobile */
+    .about-btn {
+        font-size: 12px;        /* Ukuran font lebih kecil */
+        padding: 3px 10px;      /* Padding lebih kecil */
+        margin-top: 0px;        /* Margin atas lebih kecil */
+    }
+}

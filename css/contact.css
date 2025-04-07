@@ -1,0 +1,163 @@
+/* Styles untuk halaman Contact */
+.contact-section {
+    background-color: rgba(230, 240, 250, 0.85); /* Warna dasar dengan sedikit transparansi */
+    flex: 1;
+    padding: 30px 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    padding-bottom: 88px; /* Sesuaikan nilainya */
+}
+
+/* Background image */
+.contact-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../image/tes.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    z-index: -1; /* Menempatkan di belakang konten */
+}
+
+.contact-title {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative; /* Memastikan berada di atas background */
+}
+
+.contact-title h2 {
+    display: inline-block;
+    background-color: #55788a;
+    color: white;
+    padding: 10px 40px;
+    border-radius: 15px;
+    font-size: 32px;
+    margin: 0;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2; /* Memastikan konten di atas background */
+}
+
+.contact-message {
+    background-color: rgba(224, 232, 240, 0.9);
+    border-radius: 15px;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
+}
+
+.contact-message p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #304258;
+    margin: 10px 0;
+}
+
+.contact-message p:first-child {
+    font-weight: 500;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    /* Hapus width: 40% atau ganti dengan: */
+    width: auto;
+    max-width: 320px; /* Batasi lebar maksimum */
+}
+
+.contact-item {
+    display: inline-flex; /* Ubah dari flex ke inline-flex */
+    align-items: center;
+    background-color: rgba(224, 232, 240, 0.9);
+    border-radius: 50px;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: #304258;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    width: auto; /* Tambahkan ini agar lebar menyesuaikan konten */
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+}
+
+/* Warna dan style khusus untuk setiap platform */
+.whatsapp:hover {
+    background-color: rgba(37, 211, 102, 0.2);
+}
+
+.email:hover {
+    background-color: rgba(234, 67, 53, 0.2);
+}
+
+.instagram:hover {
+    background-color: rgba(225, 48, 108, 0.2);
+}
+
+.tiktok:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .contact-info {
+        width: auto;
+        max-width: 280px; /* Sedikit lebih kecil di mobile */
+    }
+    
+    .contact-item {
+        padding: 8px 20px;
+        font-size: 14px;
+        width: auto; /* Memastikan lebar menyesuaikan konten */
+    }
+    
+    .contact-item img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+
+    .contact-title h2 {
+        font-size: 22px; /* Ukuran lebih kecil dari 32px */
+        padding: 10px 25px; /* Padding lebih kecil */
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-info {
+        width: 90%; /* Container lebih lebar di layar sangat kecil */
+    }
+    
+    .contact-item {
+        font-size: 13px; /* Font lebih kecil lagi */
+        padding: 8px 12px; /* Padding lebih kecil */
+    }
+}

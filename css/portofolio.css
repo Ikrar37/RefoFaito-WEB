@@ -1,0 +1,227 @@
+/* Styles khusus untuk halaman Portfolio */
+.portfolio-section {
+    flex: 1;
+    padding: 50px 0;
+    background-color: #ecf2f7;
+    background-image: linear-gradient(rgba(236, 242, 247, 0.85), rgba(236, 242, 247, 0.85)), url('../image/tes.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    position: relative;
+    min-height: calc(100vh - 110px); /* Tinggi minimum untuk memastikan background penuh */
+}
+
+/* Portfolio Title */
+.portfolio-title {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+    position: relative;
+    padding-top: 20px;
+}
+
+.portfolio-title h2 {
+    display: inline-block;
+    background-color: #55788a;
+    color: white;
+    padding: 15px 50px;
+    border-radius: 15px;
+    font-size: 32px;
+    margin: 0;
+}
+
+/* Search Box - selalu di kanan atas */
+.search-box {
+    background-color: #55788a;
+    border-radius: 20px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    z-index: 10; /* Memastikan selalu di atas */
+}
+.search-box i {
+    color: white;
+    margin-right: 5px;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    outline: none;
+    text-align: center;
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+    width: 90%;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 150px 50px; /* Mengurangi gap horizontal, mempertahankan vertikal */
+    padding: 50px 0;
+    min-height: 300px;
+}
+
+/* Untuk menangani hasil pencarian kosong */
+.portfolio-grid:empty {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-grid:empty::after {
+    content: "Tidak ada hasil ditemukan";
+    color: #304258;
+    font-size: 20px;
+    opacity: 0.7;
+}
+
+/* Portfolio Items */
+.portfolio-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #f5f7fa;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px; /* Tambahan margin bawah untuk mobile */
+}
+
+.portfolio-image-container {
+    background-color: #55788a;
+    padding: 20px; /* Kurangi padding untuk mobile */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-image-frame {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+    width: 65%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-image-frame img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.portfolio-info {
+    padding: 20px;
+    background-color: #e6eaef;
+    text-align: center;
+}
+
+.portfolio-info h3 {
+    color: #304258;
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    font-weight: normal;
+}
+
+.portfolio-info h3 .bold {
+    font-weight: bold;
+}
+
+.see-more-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 0 20px;
+    background-color: #e6eaef;
+}
+
+.see-more {
+    background-color: #55788a;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.see-more:hover {
+    background-color: #476a7c;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Satu kolom di mobile */
+        gap: 30px; /* Kurangi jarak antar item */
+        width: 85%; /* Sedikit lebih sempit untuk mobile */
+    }
+    
+    .portfolio-item {
+        max-width: 350px; /* Batasi lebar maksimal item */
+        margin: 0 auto; /* Tengahkan item */
+    }
+    
+    .search-box {
+        /* Tetap mempertahankan posisi absolute */
+        top: 20px;
+        right: 20px; /* Lebih dekat ke tepian di mobile */
+        width: 120px; /* Sedikit lebih kecil */
+    }
+    
+    .portfolio-title {
+        margin-top: 30px; /* Beri ruang untuk search box */
+        padding-top: 35px; /* Tambahkan padding atas */
+    }
+    
+    .portfolio-image-container {
+        padding: 15px; /* Kurangi padding */
+    }
+}
+
+@media (max-width: 600px) {
+    .portfolio-title h2 {
+        font-size: 22px;
+        padding: 10px 25px;
+    }
+    
+    .portfolio-item {
+        max-width: 280px; /* Lebih kecil lagi */
+    }
+    
+    .portfolio-image-frame {
+        height: 100px;
+    }
+    
+    .portfolio-grid {
+        width: 90%;
+        gap: 25px; /* Kurangi gap lagi */
+    }
+    
+    .see-more {
+        padding: 6px 15px;
+        font-size: 12px;
+    }
+}

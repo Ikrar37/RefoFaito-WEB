@@ -1,0 +1,218 @@
+/* Styles khusus untuk halaman About */
+.about-section {
+    flex: 1;
+    padding: 50px 0;
+    background-color: #ecf2f7; /* Warna dasar sebagai fallback */
+    background-image: linear-gradient(rgba(236, 242, 247, 0.85), rgba(236, 242, 247, 0.85)), url('../image/tes.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.about-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.about-title h2 {
+    display: inline-block;
+    background-color: #55788a;
+    color: white;
+    padding: 10px 40px;
+    border-radius: 15px;
+    font-size: 32px;
+    margin: 0;
+}
+
+.about-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    gap: 60px;
+    align-items: center;
+}
+
+.profile-image {
+    flex: 0 0 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-image img {
+    width: 100%;
+    max-width: 300px; /* Ukuran default untuk desktop */
+    height: auto;
+    border-radius: 8px; /* Opsional: tambahkan border-radius */
+}
+
+.profile-desc {
+    flex: 0 0 60%;
+    background-color: rgba(224, 232, 240, 0.95);
+    border-radius: 15px;
+    padding: 15px 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 250px;
+}
+
+.profile-desc p:first-child {
+    font-size: 16px;
+    font-weight: bold;
+    color: #304258;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.profile-desc p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #304258;
+    margin-bottom: 8px;
+    text-align: justify;
+}
+
+.skills-experience {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 150px;
+    align-items: center;
+    justify-content: center; /* Menambahkan justify-content center */
+}
+
+.education {
+    flex: 0 0 40%; /* Mengubah flex untuk mengecilkan ukuran */
+    background-color: rgba(224, 232, 240, 0.95);
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.skills-exp {
+    flex: 0 0 40%; /* Mengubah flex untuk mengecilkan ukuran */
+    background-color: rgba(224, 232, 240, 0.95);
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.education h3, .skills h3, .experience h3 {
+    color: #2A5BDA;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.education ul, .skills ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.education ul li, .skills ul li {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.education ul li:before, .skills ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #2A5BDA;
+}
+
+.skills-exp {
+    display: flex;
+    flex-direction: column;
+}
+
+.skills {
+    margin-bottom: 20px;
+}
+
+.experience ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.exp-item {
+    margin-bottom: 15px;
+}
+
+.exp-item h4 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.exp-item h4:before {
+    content: "• ";
+    color: #2A5BDA;
+}
+
+.exp-item p {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-left: 10px;
+    color: #444;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+    .about-container, .skills-experience {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .profile-image, .profile-desc, .education, .skills-exp {
+        flex: none;
+        width: 100%;
+    }
+    
+    /* Tambahan untuk responsif */
+    .profile-image {
+        margin-bottom: 20px;
+    }
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+    .profile-image img {
+        max-width: 200px; /* Atur ukuran maksimal gambar */
+        height: auto; /* Biarkan tinggi menyesuaikan proporsi */
+        margin: 0 auto; /* Pusatkan gambar */
+        display: block; /* Pastikan margin auto bekerja */
+    }
+
+    .about-container {
+        flex-direction: column; /* Susun elemen secara vertikal */
+        align-items: center; /* Pusatkan konten */
+    }
+
+    .profile-desc {
+        text-align: center; /* Pusatkan teks */
+        padding: 15px; /* Beri sedikit ruang */
+    }
+
+    .about-title h2 {
+        font-size: 1.2rem; /* Ukuran lebih kecil dari desktop (contoh: 1.8rem) */
+        margin-bottom: 15px; /* Jarak bawah lebih rapat */
+    }
+}
