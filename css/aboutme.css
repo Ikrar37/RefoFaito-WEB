@@ -3,7 +3,7 @@
     flex: 1;
     padding: 50px 0;
     background-color: #ecf2f7; /* Warna dasar sebagai fallback */
-    background-image: linear-gradient(rgba(236, 242, 247, 0.85), rgba(236, 242, 247, 0.85)), url('../image/tes.jpg');
+    background-image: linear-gradient(rgba(236, 242, 247, 0.92), rgba(236, 242, 247, 0.92)), url('../image/tes.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -11,11 +11,29 @@
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
+    animation: fadeIn 1s ease-in-out; /* Animasi fade in saat halaman dimuat */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .about-title {
     text-align: center;
     margin-bottom: 50px;
+    animation: slideDown 0.8s ease-out; /* Animasi slide down untuk judul */
+}
+
+@keyframes slideDown {
+    from { 
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to { 
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .about-title h2 {
@@ -26,193 +44,379 @@
     border-radius: 15px;
     font-size: 32px;
     margin: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
+.about-title h2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    background-color: #4a6b7d;
+}
+
+/* Modifikasi utama untuk container pada desktop */
 .about-container {
     display: flex;
     width: 90%;
     max-width: 1200px;
     margin: 0 auto 40px;
-    gap: 60px;
-    align-items: center;
+    gap: 40px;
+    align-items: center; /* Ubah ke center untuk membuat konten sejajar vertikal */
+    animation: fadeInUp 1s ease-out 0.2s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .profile-image {
-    flex: 0 0 35%;
+    flex: 0 0 30%; /* Sedikit lebih kecil */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Selaraskan ke tengah */
+    transition: transform 0.5s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.02);
 }
 
 .profile-image img {
     width: 100%;
     max-width: 300px; /* Ukuran default untuk desktop */
     height: auto;
-    border-radius: 8px; /* Opsional: tambahkan border-radius */
+    border-radius: 15px; /* Kurangi radius untuk tampilan lebih profesional */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Tambah shadow pada gambar */
+    transition: all 0.5s ease;
+    filter: brightness(1.02) contrast(1.05);
+}
+
+.profile-image img:hover {
+    box-shadow: 0 10px 25px rgba(42, 91, 218, 0.2);
+    transform: scale(1.03) rotate(1deg);
 }
 
 .profile-desc {
-    flex: 0 0 60%;
-    background-color: rgba(224, 232, 240, 0.95);
+    flex: 0 0 65%; /* Sedikit lebih besar */
+    background-color: rgba(255, 255, 255, 0.95); /* Warna lebih terang untuk keterbacaan */
     border-radius: 15px;
-    padding: 15px 20px;
+    padding: 25px; /* Padding lebih besar */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: 250px;
+    justify-content: center; /* Ubah ke center untuk konten sejajar vertikal */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.profile-desc p:first-child {
-    font-size: 16px;
-    font-weight: bold;
+.profile-desc:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.profile-desc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 0;
+    background: linear-gradient(to bottom, #2A5BDA, #55788a);
+    transition: height 0.5s ease;
+}
+
+.profile-desc:hover::before {
+    height: 100%;
+}
+
+/* Tambahkan heading untuk profile-desc */
+.profile-desc h3 {
     color: #304258;
-    margin-bottom: 5px;
-    text-align: left;
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2A5BDA;
+    text-align: center; /* Rata tengah untuk heading */
+    transition: color 0.3s ease;
+}
+
+.profile-desc:hover h3 {
+    color: #2A5BDA;
 }
 
 .profile-desc p {
     font-size: 15px;
-    line-height: 1.5;
+    line-height: 1.6; /* Sedikit lebih besar untuk keterbacaan */
     color: #304258;
-    margin-bottom: 8px;
-    text-align: justify;
+    margin-bottom: 10px;
+    text-align: center; /* Ubah dari justify ke center */
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
 }
 
+.profile-desc:hover p {
+    transform: translateX(5px);
+}
+
+/* Container baru untuk skills dan education */
 .skills-experience {
     display: flex;
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 150px;
-    align-items: center;
-    justify-content: center; /* Menambahkan justify-content center */
+    gap: 40px; /* Kurangi gap */
+    align-items: flex-start;
+    justify-content: space-between; /* Distribute evenly */
+    animation: fadeInUp 1s ease-out 0.4s;
+    animation-fill-mode: both;
 }
 
-.education {
-    flex: 0 0 40%; /* Mengubah flex untuk mengecilkan ukuran */
-    background-color: rgba(224, 232, 240, 0.95);
+.education, .skills-exp {
+    flex: 0 0 48%; /* Gunakan 48% untuk spacing yang lebih baik */
+    background-color: rgba(255, 255, 255, 0.95); /* Warna lebih terang */
     border-radius: 15px;
-    padding: 20px 30px;
+    padding: 25px; /* Padding lebih besar */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    min-height: 250px;
+    min-height: auto; /* Hapus min-height tetap */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Ubah ke flex-start */
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.skills-exp {
-    flex: 0 0 40%; /* Mengubah flex untuk mengecilkan ukuran */
-    background-color: rgba(224, 232, 240, 0.95);
-    border-radius: 15px;
-    padding: 20px 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    min-height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.education:hover, .skills-exp:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.98);
+}
+
+.education::after, .skills-exp::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(to right, #2A5BDA, #55788a);
+    transition: width 0.5s ease;
+}
+
+.education:hover::after, .skills-exp:hover::after {
+    width: 100%;
 }
 
 .education h3, .skills h3, .experience h3 {
     color: #2A5BDA;
     font-size: 20px;
+    margin-top: 0;
     margin-bottom: 15px;
-}
-
-.education ul, .skills ul {
-    list-style-type: none;
-    padding-left: 20px;
-}
-
-.education ul li, .skills ul li {
+    padding-bottom: 8px;
+    border-bottom: 2px solid #2A5BDA; /* Tambah border untuk konsistensi */
+    transition: all 0.3s ease;
     position: relative;
-    padding-left: 15px;
-    margin-bottom: 10px;
-    line-height: 1.4;
 }
 
-.education ul li:before, .skills ul li:before {
+.education h3::after, .skills h3::after, .experience h3::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #55788a;
+    transition: width 0.5s ease;
+}
+
+.education:hover h3::after, .skills-exp:hover .skills h3::after, .skills-exp:hover .experience h3::after {
+    width: 100%;
+}
+
+/* Seragamkan semua style untuk list */
+.education ul, .skills ul, .experience ul {
+    list-style-type: none;
+    padding-left: 5px; /* Kurangi padding */
+    margin: 0;
+}
+
+.education ul li, .skills ul li, .experience ul li {
+    position: relative;
+    padding-left: 20px; /* Sedikit lebih besar */
+    margin-bottom: 12px; /* Sedikit lebih besar */
+    line-height: 1.5;
+    transition: transform 0.3s ease, color 0.3s ease;
+    opacity: 0;
+    animation: fadeInList 0.5s ease forwards;
+    animation-delay: calc(0.1s * var(--li-index, 0));
+}
+
+@keyframes fadeInList {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.education ul li:hover, .skills ul li:hover, .experience ul li:hover {
+    transform: translateX(5px);
+    color: #2A5BDA;
+}
+
+.education ul li:before, .skills ul li:before, .experience ul li:before {
     content: "•";
     position: absolute;
     left: 0;
     color: #2A5BDA;
+    font-weight: bold; /* Membuat bullet point lebih terlihat */
+    transition: all 0.3s ease;
 }
 
-.skills-exp {
-    display: flex;
-    flex-direction: column;
+.education ul li:hover:before, .skills ul li:hover:before, .experience ul li:hover:before {
+    color: #55788a;
+    transform: scale(1.2);
 }
 
 .skills {
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Lebih besar untuk pemisahan yang lebih jelas */
 }
 
-.experience ul {
-    list-style-type: none;
-    padding-left: 0;
+.experience h3 {
+    margin-top: 10px; /* Tambahkan sedikit jarak dari skills */
 }
 
+/* Style lebih konsisten untuk exp-item */
 .exp-item {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.exp-item:hover {
+    transform: translateX(5px);
 }
 
 .exp-item h4 {
     color: #333;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 600;
     margin-bottom: 5px;
+    position: relative;
+    padding-left: 20px; /* Konsistensi dengan list item lain */
+    transition: color 0.3s ease;
+}
+
+.exp-item:hover h4 {
+    color: #2A5BDA;
 }
 
 .exp-item h4:before {
-    content: "• ";
+    content: "•";
+    position: absolute;
+    left: 0;
     color: #2A5BDA;
+    font-weight: bold;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.exp-item:hover h4:before {
+    transform: scale(1.2);
+    color: #55788a;
 }
 
 .exp-item p {
     font-size: 15px;
     line-height: 1.5;
-    margin-left: 10px;
+    margin-top: 5px;
+    margin-left: 20px; /* Seragamkan dengan padding-left item lain */
     color: #444;
+    transition: color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.exp-item:hover p {
+    color: #304258;
+}
+
+/* Smooth scroll behavior for the page */
+html {
+    scroll-behavior: smooth;
 }
 
 /* Responsive design */
-@media (max-width: 900px) {
-    .about-container, .skills-experience {
-        flex-direction: column;
-        gap: 20px;
+@media (max-width: 992px) {
+    .skills-experience {
+        gap: 30px;
     }
     
-    .profile-image, .profile-desc, .education, .skills-exp {
+    .education, .skills-exp {
+        flex: 0 0 48%;
+    }
+}
+
+@media (max-width: 900px) {
+    .about-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .profile-image, .profile-desc {
         flex: none;
         width: 100%;
     }
     
-    /* Tambahan untuk responsif */
     .profile-image {
-        margin-bottom: 20px;
+        margin-bottom: 0; /* Hapus margin bottom */
     }
 }
 
-/* Responsive styles for mobile */
 @media (max-width: 768px) {
+    .skills-experience {
+        flex-direction: column;
+        gap: 30px;
+        width: 90%;
+    }
+    
+    .education, .skills-exp {
+        flex: none;
+        width: 100%;
+        padding: 20px;
+        margin: 0;
+    }
+    
     .profile-image img {
-        max-width: 200px; /* Atur ukuran maksimal gambar */
-        height: auto; /* Biarkan tinggi menyesuaikan proporsi */
-        margin: 0 auto; /* Pusatkan gambar */
-        display: block; /* Pastikan margin auto bekerja */
+        max-width: 200px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
     }
 
     .about-container {
-        flex-direction: column; /* Susun elemen secara vertikal */
-        align-items: center; /* Pusatkan konten */
+        flex-direction: column;
+        align-items: center;
     }
 
     .profile-desc {
-        text-align: center; /* Pusatkan teks */
-        padding: 15px; /* Beri sedikit ruang */
+        padding: 20px;
     }
 
     .about-title h2 {
-        font-size: 1.2rem; /* Ukuran lebih kecil dari desktop (contoh: 1.8rem) */
-        margin-bottom: 15px; /* Jarak bawah lebih rapat */
+        font-size: 1.5rem;
+        margin-bottom: 15px;
     }
 }

@@ -13,6 +13,49 @@ body {
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Efek animasi parallax sederhana */
+@keyframes slowBgZoom {
+    0% {
+        background-size: 100%;
+        background-position: center 30%;
+    }
+    50% {
+        background-size: 110%;
+        background-position: center 32%;
+    }
+    100% {
+        background-size: 100%;
+        background-position: center 30%;
+    }
+}
+
+/* Animasi background untuk mobile */
+@keyframes simpleBgMove {
+    0% {
+        background-position: center 25%;
+    }
+    50% {
+        background-position: center 35%;
+    }
+    100% {
+        background-position: center 25%;
+    }
+}
+
+.animate-bg {
+    animation: slowBgZoom 20s ease-in-out infinite;
+}
+
+.simple-bg-animation {
+    animation: simpleBgMove 15s ease-in-out infinite !important;
 }
 
 .hero {
@@ -24,64 +67,366 @@ body {
     justify-content: center;
     text-align: center;
     padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efek gelombang di bagian bawah hero */
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(135deg, transparent 33%, rgba(255, 255, 255, 0.3) 33%, rgba(255, 255, 255, 0.3) 66%, transparent 66%);
+    background-size: 40px 40px;
+    animation: waveMotion 8s linear infinite;
+}
+
+@keyframes waveMotion {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 80px; }
 }
 
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
-    padding: 10px;
-    transform: translateY(-50px);
+    padding: 20px 30px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-30px);
+    animation: floatIn 1s ease-out forwards;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-30px);
+    }
 }
 
 .hero h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
+    font-size: 42px;
+    margin-bottom: 25px;
     text-align: center;
     color: white;
+    text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    animation: appearFromLeft 1.2s ease-out;
+    position: relative;
+    display: inline-block;
+}
+
+@keyframes appearFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.hero h2::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    transform: translateX(-50%);
+    animation: lineExpand 1.5s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+@keyframes lineExpand {
+    from { width: 0; }
+    to { width: 70%; }
 }
 
 .hero h2 .greeting {
-    color: #304258;
+    color: #000000;
+    font-style: italic;
+    position: relative;
+    animation: glowText 3s ease-in-out infinite;
+}
+
+@keyframes glowText {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
+    }
 }
 
 .hero p {
-    font-size: 18px;
-    line-height: 1.4;
-    margin-bottom: 15px;
+    font-size: 19px;
+    line-height: 1.6;
+    margin-bottom: 25px;
     text-align: center;
+    color: #FFFFFF;
+    animation: fadeUp 1.4s ease-out;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .about-btn {
     display: inline-block;
-    background-color: rgba(199, 217, 229, 0.7); /* 0.7 = 70% opacity */
+    background: linear-gradient(135deg, #C7D9E5 0%, rgba(199, 217, 229, 0.8) 100%);
     color: #304258;
     text-decoration: none;
-    font-size: 16px;
-    margin-top: 10px;
-    transition: all 0.3s ease;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: 0px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     padding: 5px 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    animation: buttonAppear 1.6s ease-out;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes buttonAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.about-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(48, 66, 88, 0.9);
+    transition: width 0.4s ease;
+    z-index: -1;
+    border-radius: 30px;
 }
 
 .about-btn:hover {
-    background-color: #5a7090;
     color: white;
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
+.about-btn:hover::before {
+    width: 100%;
+}
+
+/* Particle effect */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+}
+
+/* Perbaikan untuk tampilan mobile */
 @media (max-width: 768px) {
+    body {
+        background-position: center center; /* Perbaikan posisi background */
+    }
+    
+    .hero {
+        padding-top: 40px; /* Mengurangi ruang kosong di atas */
+        align-items: center; /* Lebih baik untuk centering */
+    }
+    
+    .hero-content {
+        padding: 20px;
+        margin: 0 15px;
+        transform: translateY(0); /* Reset transform untuk mobile */
+        width: 90%; /* Lebarkan card */
+        max-width: 450px; /* Batasi lebar maksimum */
+        background-color: rgba(255, 255, 255, 0.2); /* Sedikit lebih transparan */
+    }
+    
     .hero h2 {
-        font-size: 28px;
+        font-size: 26px;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+    
+    .hero h2::after {
+        bottom: -5px;
+        height: 2px; /* Lebih tipis */
+        animation: lineExpand 1.2s ease-out forwards;
     }
     
     .hero p {
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 20px;
     }
     
-    /* Tambahkan style khusus untuk tombol about-btn di mobile */
+    /* Style khusus untuk tombol about-btn di mobile */
     .about-btn {
-        font-size: 12px;        /* Ukuran font lebih kecil */
-        padding: 3px 10px;      /* Padding lebih kecil */
-        margin-top: 0px;        /* Margin atas lebih kecil */
+        font-size: 14px;
+        padding: 8px 20px;
+        margin-top: 5px;
+        border-radius: 25px; /* Sedikit lebih bulat */
+        display: block; /* Full width pada mobile */
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
     }
+    
+    .hero::after {
+        height: 30px;
+        background-size: 25px 25px;
+        bottom: -5px; /* Posisikan sedikit lebih tinggi */
+    }
+    
+    /* Kurangi jumlah partikel pada mobile */
+    .particles .particle:nth-child(n+20) {
+        display: none;
+    }
+    
+    /* Perbaikan animasi pada mobile */
+    @keyframes floatIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Penyesuaian khusus untuk layar sangat kecil */
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 15px;
+        margin-top: 20px; /* Tambah sedikit ruang di atas */
+    }
+    
+    .hero h2 {
+        font-size: 22px;
+    }
+    
+    .hero p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .about-btn {
+        font-size: 13px;
+        padding: 7px 18px;
+        width: 90%; /* Lebih lebar pada layar sangat kecil */
+    }
+    
+    /* Pastikan konten tidak terpotong */
+    .hero-content {
+        overflow-y: auto;
+        max-height: 80vh;
+    }
+    
+    /* Memperbaiki posisi partikel pada layar kecil */
+    .particles {
+        height: 80%;
+    }
+}
+
+/* Animasi untuk loading */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #304258;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-animation {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.loading-circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 5px solid transparent;
+    border-top-color: #C7D9E5;
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+}
+
+.loading-circle:nth-child(2) {
+    border: 5px solid transparent;
+    border-bottom-color: #4a90e2;
+    animation: spin 1.5s linear infinite reverse;
+}
+
+.loading-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

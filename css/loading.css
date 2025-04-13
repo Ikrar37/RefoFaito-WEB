@@ -1,0 +1,46 @@
+/* loading.css - Tambahkan file ini ke folder css Anda */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #4a90e2;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+#loader-text {
+    font-family: 'Orbitron', sans-serif;
+    color: #4a90e2;
+    font-size: 22px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Class ini akan ditambahkan ke body oleh JavaScript */
+.loading {
+    overflow: hidden;
+}
+
+/* Body akan mendapatkan class ini setelah loading selesai */
+.loaded #preloader {
+    display: none;
+}

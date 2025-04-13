@@ -1,6 +1,6 @@
 /* Styles untuk halaman Contact */
 .contact-section {
-    background-color: rgba(230, 240, 250, 0.85); /* Warna dasar dengan sedikit transparansi */
+    background-color: rgba(230, 240, 250, 0.85);
     flex: 1;
     padding: 30px 0;
     position: relative;
@@ -8,10 +8,16 @@
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    padding-bottom: 88px; /* Sesuaikan nilainya */
+    padding-bottom: 88px;
+    animation: fadeIn 0.5s ease-in-out; /* Animasi lebih cepat */
 }
 
-/* Background image */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Background image dengan animasi yang lebih sederhana */
 .contact-section::before {
     content: "";
     position: absolute;
@@ -24,13 +30,26 @@
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    z-index: -1; /* Menempatkan di belakang konten */
+    z-index: -1;
+    /* Animasi zoom dihapus untuk simplifikasi */
 }
 
 .contact-title {
     text-align: center;
     margin-bottom: 30px;
-    position: relative; /* Memastikan berada di atas background */
+    position: relative;
+    animation: slideDown 0.5s ease-out; /* Animasi lebih cepat */
+}
+
+@keyframes slideDown {
+    from { 
+        transform: translateY(-20px); /* Jarak dikurangi */
+        opacity: 0;
+    }
+    to { 
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .contact-title h2 {
@@ -41,8 +60,11 @@
     border-radius: 15px;
     font-size: 32px;
     margin: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
 }
 
+/* Menghapus efek shimmer pada judul */
 .contact-container {
     display: flex;
     flex-direction: column;
@@ -51,7 +73,7 @@
     max-width: 800px;
     margin: 0 auto;
     position: relative;
-    z-index: 2; /* Memastikan konten di atas background */
+    z-index: 2;
 }
 
 .contact-message {
@@ -62,6 +84,20 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     text-align: center;
+    animation: fadeInUp 0.5s ease-out; /* Animasi lebih cepat */
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Jarak dikurangi */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .contact-message p {
@@ -73,20 +109,23 @@
 
 .contact-message p:first-child {
     font-weight: 500;
+    position: relative;
+    display: inline-block;
 }
+
+/* Menghapus animasi underline */
 
 .contact-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    /* Hapus width: 40% atau ganti dengan: */
     width: auto;
-    max-width: 320px; /* Batasi lebar maksimum */
+    max-width: 320px;
 }
 
 .contact-item {
-    display: inline-flex; /* Ubah dari flex ke inline-flex */
+    display: inline-flex;
     align-items: center;
     background-color: rgba(224, 232, 240, 0.9);
     border-radius: 50px;
@@ -94,49 +133,63 @@
     text-decoration: none;
     color: #304258;
     font-size: 16px;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /* Transisi lebih sederhana */
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    width: auto; /* Tambahkan ini agar lebar menyesuaikan konten */
+    width: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Menghapus animasi staggered dan ripple */
 }
 
 .contact-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .contact-item img {
     width: 24px;
     height: 24px;
     margin-right: 15px;
+    transition: all 0.3s ease;
 }
 
-/* Warna dan style khusus untuk setiap platform */
+/* Warna untuk setiap platform */
 .whatsapp:hover {
-    background-color: rgba(37, 211, 102, 0.2);
+    background-color: rgba(37, 211, 102, 0.1);
+    border-color: rgba(37, 211, 102, 0.3);
 }
 
 .email:hover {
-    background-color: rgba(234, 67, 53, 0.2);
+    background-color: rgba(234, 67, 53, 0.1);
+    border-color: rgba(234, 67, 53, 0.3);
 }
 
 .instagram:hover {
-    background-color: rgba(225, 48, 108, 0.2);
+    background-color: rgba(225, 48, 108, 0.1);
+    border-color: rgba(225, 48, 108, 0.3);
 }
 
 .tiktok:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.2);
 }
+
+/* Menghapus moving gradient */
 
 @media (max-width: 768px) {
     .contact-info {
         width: auto;
-        max-width: 280px; /* Sedikit lebih kecil di mobile */
+        max-width: 280px;
     }
     
     .contact-item {
         padding: 8px 20px;
         font-size: 14px;
-        width: auto; /* Memastikan lebar menyesuaikan konten */
+        width: auto;
+    }
+    
+    .contact-item:active {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     
     .contact-item img {
@@ -146,18 +199,22 @@
     }
 
     .contact-title h2 {
-        font-size: 22px; /* Ukuran lebih kecil dari 32px */
-        padding: 10px 25px; /* Padding lebih kecil */
+        font-size: 22px;
+        padding: 10px 25px;
     }
 }
 
 @media (max-width: 480px) {
     .contact-info {
-        width: 90%; /* Container lebih lebar di layar sangat kecil */
+        width: 90%;
     }
     
     .contact-item {
-        font-size: 13px; /* Font lebih kecil lagi */
-        padding: 8px 12px; /* Padding lebih kecil */
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+    
+    .contact-message p {
+        font-size: 16px;
     }
 }

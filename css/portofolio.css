@@ -13,6 +13,12 @@
     overflow-y: auto;
     position: relative;
     min-height: calc(100vh - 110px); /* Tinggi minimum untuk memastikan background penuh */
+    animation: fadeIn 0.8s ease-in-out; /* Animasi fade in saat load */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Portfolio Title */
@@ -22,6 +28,19 @@
     width: 100%;
     position: relative;
     padding-top: 20px;
+    animation: slideDown 0.7s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes slideDown {
+    from { 
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+    to { 
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .portfolio-title h2 {
@@ -32,9 +51,39 @@
     border-radius: 15px;
     font-size: 32px;
     margin: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Search Box - selalu di kanan atas */
+.portfolio-title h2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-title h2::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+}
+
+.portfolio-title h2:hover::after {
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Search Box dengan animasi */
 .search-box {
     background-color: #55788a;
     border-radius: 20px;
@@ -47,10 +96,37 @@
     top: 20px;
     right: 50px;
     z-index: 10; /* Memastikan selalu di atas */
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    animation: slideLeft 0.7s ease-out forwards;
+    opacity: 0;
 }
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.search-box:focus-within {
+    width: 220px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: #476a7c;
+}
+
 .search-box i {
     color: white;
     margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+.search-box:focus-within i {
+    transform: scale(1.1);
 }
 
 .search-box input {
@@ -60,11 +136,17 @@
     width: 100%;
     outline: none;
     text-align: center;
+    transition: all 0.3s ease;
 }
 
 .search-box input::placeholder {
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+.search-box:focus-within input::placeholder {
+    opacity: 0.5;
 }
 
 /* Portfolio Grid */
@@ -91,9 +173,15 @@
     color: #304258;
     font-size: 20px;
     opacity: 0.7;
+    animation: pulse 1.5s infinite alternate;
 }
 
-/* Portfolio Items */
+@keyframes pulse {
+    from { opacity: 0.5; }
+    to { opacity: 0.9; }
+}
+
+/* Portfolio Items dengan animasi */
 .portfolio-item {
     display: flex;
     flex-direction: column;
@@ -102,39 +190,112 @@
     background-color: #f5f7fa;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px; /* Tambahan margin bawah untuk mobile */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-fill-mode: both;
+    transform: translateY(30px);
+}
+
+.portfolio-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.portfolio-item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.portfolio-item:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .portfolio-image-container {
     background-color: #55788a;
-    padding: 20px; /* Kurangi padding untuk mobile */
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    aspect-ratio: 1/1; /* Memastikan container berbentuk persegi */
+    transition: background-color 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-image-container {
+    background-color: #476a7c;
 }
 
 .portfolio-image-frame {
-    background-color: white;
+    background-color: #C7D9E5;
     border-radius: 10px;
     overflow: hidden;
-    padding: 10px;
-    width: 65%;
-    height: 200px;
+    width: 80%;
+    aspect-ratio: 1/1; /* Memastikan frame tetap persegi */
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0; /* Menghilangkan padding untuk memaksimalkan ruang gambar */
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.portfolio-item:hover .portfolio-image-frame {
+    width: 85%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transform: rotate(2deg);
+}
+
+.portfolio-image-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
+    z-index: 1;
+}
+
+.portfolio-item:hover .portfolio-image-frame::before {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .portfolio-image-frame img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    border-radius: 5px;
+    width: 90%;
+    height: 90%;
+    object-fit: contain; /* Memastikan gambar tidak terdistorsi */
+    transition: all 0.5s ease;
+    z-index: 0;
+}
+
+.portfolio-item:hover .portfolio-image-frame img {
+    transform: scale(1.05);
 }
 
 .portfolio-info {
     padding: 20px;
     background-color: #e6eaef;
     text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-info {
+    background-color: #d8e0e9;
 }
 
 .portfolio-info h3 {
@@ -143,10 +304,32 @@
     margin-bottom: 10px;
     line-height: 1.4;
     font-weight: normal;
+    transition: color 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-info h3 {
+    color: #1e2a39;
 }
 
 .portfolio-info h3 .bold {
     font-weight: bold;
+    position: relative;
+    display: inline-block;
+}
+
+.portfolio-info h3 .bold::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2A5BDA;
+    transition: width 0.4s ease;
+}
+
+.portfolio-item:hover .portfolio-info h3 .bold::after {
+    width: 100%;
 }
 
 .see-more-container {
@@ -155,6 +338,11 @@
     justify-content: center;
     padding: 0 0 20px;
     background-color: #e6eaef;
+    transition: background-color 0.3s ease;
+}
+
+.portfolio-item:hover .see-more-container {
+    background-color: #d8e0e9;
 }
 
 .see-more {
@@ -164,40 +352,84 @@
     border-radius: 20px;
     text-decoration: none;
     font-size: 14px;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.see-more::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #2A5BDA;
+    transition: width 0.4s ease;
+    z-index: -1;
+    border-radius: 20px;
 }
 
 .see-more:hover {
-    background-color: #476a7c;
+    background-color: transparent;
+    box-shadow: 0 5px 15px rgba(42, 91, 218, 0.2);
+    transform: translateY(-3px);
+}
+
+.see-more:hover::before {
+    width: 100%;
+}
+
+/* Cursor custom untuk portfolio items */
+.portfolio-item {
+    cursor: pointer;
 }
 
 /* Responsive Design */
 @media (max-width: 900px) {
     .portfolio-grid {
-        grid-template-columns: 1fr; /* Satu kolom di mobile */
-        gap: 30px; /* Kurangi jarak antar item */
-        width: 85%; /* Sedikit lebih sempit untuk mobile */
+        grid-template-columns: 1fr;
+        gap: 30px;
+        width: 85%;
     }
     
     .portfolio-item {
-        max-width: 350px; /* Batasi lebar maksimal item */
-        margin: 0 auto; /* Tengahkan item */
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+    
+    .portfolio-image-container {
+        aspect-ratio: 1/1; /* Tetap persegi di mobile */
+        padding: 20px;
+        height: auto; /* Biarkan tinggi ditentukan oleh aspect-ratio */
+    }
+    
+    .portfolio-image-frame {
+        width: 80%;
+        aspect-ratio: 1/1; /* Tetap persegi di mobile */
+        height: auto; /* Biarkan tinggi ditentukan oleh aspect-ratio */
+    }
+    
+    .portfolio-image-frame img {
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+    }
+    
+    .portfolio-info {
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .search-box {
         /* Tetap mempertahankan posisi absolute */
         top: 20px;
         right: 20px; /* Lebih dekat ke tepian di mobile */
-        width: 120px; /* Sedikit lebih kecil */
-    }
-    
-    .portfolio-title {
-        margin-top: 30px; /* Beri ruang untuk search box */
-        padding-top: 35px; /* Tambahkan padding atas */
-    }
-    
-    .portfolio-image-container {
-        padding: 15px; /* Kurangi padding */
+        width: 160px; /* Sedikit lebih kecil */
     }
 }
 
@@ -209,10 +441,6 @@
     
     .portfolio-item {
         max-width: 280px; /* Lebih kecil lagi */
-    }
-    
-    .portfolio-image-frame {
-        height: 100px;
     }
     
     .portfolio-grid {

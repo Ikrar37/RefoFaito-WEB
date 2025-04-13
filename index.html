@@ -6,10 +6,91 @@
     <title>RefoFaito</title>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Voltaire&display=swap" rel="stylesheet">
+    <style>
+        /* Tambahan style inline untuk efek ripple dan animasi loading */
+        .ripple {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes rippleEffect {
+            to {
+                transform: scale(30);
+                opacity: 0;
+            }
+        }
+        
+        .animate-on-load {
+            opacity: 0;
+        }
+        
+        .animate-on-load.visible {
+            opacity: 1;
+            transition: all 0.8s ease;
+        }
+        
+        /* Styling untuk text typing animation */
+        .typing-cursor {
+            display: inline-block;
+            animation: blink 0.7s infinite;
+            margin-left: 2px;
+            font-weight: normal;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Perbaikan untuk tampilan mobile */
+        @media (max-width: 768px) {
+            .loading-animation {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .loading-text {
+                font-size: 14px;
+            }
+            
+            .ripple {
+                /* Membatasi ukuran ripple pada mobile */
+                animation: rippleEffect 0.5s linear;
+            }
+            
+            @keyframes rippleEffect {
+                to {
+                    transform: scale(20);
+                    opacity: 0;
+                }
+            }
+            
+            /* Percepat animasi pada mobile */
+            .animate-on-load.visible {
+                transition: all 0.6s ease;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-animation">
+            <div class="loading-circle"></div>
+            <div class="loading-circle"></div>
+            <div class="loading-text">RefoFaito</div>
+        </div>
+    </div>
+    
     <header>
         <div class="container">
             <div class="logo">
@@ -38,10 +119,13 @@
     <div class="blue-bar"></div>
 
     <section class="hero">
-        <div class="hero-content">
-            <h2><span class="greeting">Hello! I'm</span> Muhammad Ikrar</h2>
-            <p>Website ini saya buat untuk menampilkan ketertarikan saya di dunia Digital Marketing serta menampilkan foto foto yang pernah saya abadikan saat mengunjungi suatu tempat</p>
-            <a href="aboutme.html" class="about-btn">about me</a>
+        <!-- Container partikel akan ditambahkan melalui JavaScript -->
+        
+        <div class="hero-content animate-on-load">
+            <h2 class="animate-on-load"><span class="greeting">Hello! I'm</span> Muhammad Ikrar</h2>
+            <p class="animate-on-load">Website ini saya buat sebagai wadah untuk mengekspresikan ketertarikan saya di dunia Digital Marketing, 
+                sekaligus sebagai galeri visual dari momen-momen yang saya abadikan saat menjelajahi berbagai tempat.</p>
+            <a href="aboutme.html" class="about-btn animate-on-load">about me</a>
         </div>
     </section>
 
@@ -52,6 +136,17 @@
     </footer>
 
     <script src="javascript/humbermenu.js"></script>
-
+    <script src="javascript/home.js"></script>
+    <script src="javascript/common.js"></script>
+    
+    <script>
+        // Tambahan script inline untuk menginisialisasi animasi
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tambahkan indeks animasi ke semua elemen animate-on-load
+            document.querySelectorAll('.animate-on-load').forEach((item, index) => {
+                item.style.animationDelay = (0.2 * index) + 's';
+            });
+        });
+    </script>
 </body>
 </html>
