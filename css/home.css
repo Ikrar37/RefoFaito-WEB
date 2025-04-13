@@ -358,7 +358,7 @@ body {
     
     .about-btn {
         font-size: 13px;
-        padding: 7px 18px;
+        padding: 7px 10px;
         width: 90%; /* Lebih lebar pada layar sangat kecil */
     }
     
@@ -452,5 +452,42 @@ body {
     
     .hero-content {
         margin-top: 10px; /* Kurangi margin untuk layar sangat kecil */
+    }
+}
+
+/* Perbaikan untuk tombol about-me di mobile */
+@media (max-width: 768px) {
+    .about-btn {
+        width: auto !important; /* Override properti width sebelumnya */
+        padding: 8px 20px;
+        margin: 5px auto; /* Tetap rata tengah */
+        display: inline-block; /* Ubah dari block ke inline-block */
+    }
+}
+
+@media (max-width: 480px) {
+    .about-btn {
+        padding: 7px 18px;
+        font-size: 13px;
+    }
+}
+
+/* Perbaikan untuk tombol about-me lebih kecil di mobile */
+@media (max-width: 768px) {
+    .about-btn {
+        width: auto !important; /* Override properti width sebelumnya */
+        display: inline-block !important; /* Ubah dari block ke inline-block */
+        padding: 6px 16px !important; /* Padding lebih kecil */
+        margin: 5px auto; /* Tetap rata tengah */
+        font-size: 12px !important; /* Font lebih kecil */
+        border-radius: 20px !important; /* Border radius lebih kecil */
+    }
+}
+
+@media (max-width: 480px) {
+    .about-btn {
+        padding: 5px 14px !important; /* Padding lebih kecil lagi */
+        font-size: 11px !important; /* Font lebih kecil lagi */
+        border-radius: 18px !important; /* Border radius lebih kecil lagi */
     }
 }
