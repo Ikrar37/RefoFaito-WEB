@@ -430,3 +430,27 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* Penyesuaian untuk posisi hero di mobile - tambahkan di bagian bawah home.css */
+@media (max-width: 768px) {
+    .hero {
+        align-items: flex-start; /* Ubah dari center ke flex-start */
+        padding-top: 80px; /* Tambah padding atas */
+    }
+    
+    .hero-content {
+        margin-top: 20px; /* Tambah margin atas */
+        transform: translateY(0); /* Reset transform yang ada */
+    }
+}
+
+/* Untuk layar yang lebih kecil */
+@media (max-width: 480px) {
+    .hero {
+        padding-top: 60px; /* Kurangi padding untuk layar sangat kecil */
+    }
+    
+    .hero-content {
+        margin-top: 10px; /* Kurangi margin untuk layar sangat kecil */
+    }
+}
