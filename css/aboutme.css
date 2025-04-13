@@ -420,3 +420,45 @@ html {
         margin-bottom: 15px;
     }
 }
+
+/* Perbaikan untuk teks nama di mobile */
+@media (max-width: 768px) {
+    .profile-desc h3 {
+        font-size: 18px; /* Ukuran font lebih kecil */
+        white-space: nowrap; /* Mencegah text wrapping */
+        overflow: visible; /* Pastikan teks tetap terlihat */
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-desc h3 {
+        font-size: 16px; /* Lebih kecil lagi untuk layar sangat kecil */
+    }
+}
+
+/* Perbaikan untuk bullet points ganda */
+.experience ul li::before,
+.skills ul li::before,
+.education ul li::before {
+    content: "•"; /* Pastikan hanya ada satu bullet */
+    position: absolute;
+    left: 0;
+    color: #2A5BDA;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.exp-item h4::before {
+    content: ""; /* Hapus bullet tambahan pada h4 */
+}
+
+/* Ubah padding agar tetap terlihat rapi */
+.exp-item h4 {
+    padding-left: 0;
+}
+
+/* Pastikan alignment tetap rapi */
+.exp-item p {
+    margin-left: 0;
+    padding-left: 20px;
+}
