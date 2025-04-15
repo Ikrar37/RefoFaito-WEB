@@ -454,3 +454,25 @@ footer {
     pointer-events: none;
     z-index: 1;
 }
+
+/* Perbaikan untuk tampilan mobile: text wrap yang lebih baik */
+@media (max-width: 480px) {
+    .contact-message p {
+        font-size: 16px;
+        white-space: normal;
+        word-break: keep-all;
+    }
+    
+    /* Khusus untuk mobile, atur white-space untuk mencegah pemisahan kata tertentu */
+    .contact-message p .no-break {
+        white-space: nowrap;
+        display: inline-block;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-message p:first-child {
+      font-size: 15px;
+      line-height: 1.4;
+    }
+  }
