@@ -1,4 +1,4 @@
-/* home.css - hanya untuk halaman home - Versi Diperbaiki */
+/* home.css - optimasi performa, mengurangi animasi berat */
 html, body {
     height: 100%;
     overflow-x: hidden;
@@ -15,23 +15,17 @@ body {
     flex-direction: column;
 }
 
-/* Background zoom animation */
+/* Background zoom animation - disederhanakan */
 .animate-bg {
-    animation: slowBgZoom 20s ease-in-out infinite;
+    animation: slowBgZoom 30s ease-in-out infinite;
 }
 
 @keyframes slowBgZoom {
-    0% {
+    0%, 100% {
         background-size: 100%;
-        background-position: center 30%;
     }
     50% {
-        background-size: 110%;
-        background-position: center 32%;
-    }
-    100% {
-        background-size: 100%;
-        background-position: center 30%;
+        background-size: 105%;
     }
 }
 
@@ -48,7 +42,7 @@ body {
     overflow: hidden;
 }
 
-/* Wave effect at bottom */
+/* Wave effect at bottom - dipertahankan karena ringan */
 .hero::after {
     content: "";
     position: absolute;
@@ -77,7 +71,7 @@ body {
     position: relative;
     z-index: 1;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    opacity: 1; /* Pastikan konten terlihat */
+    transform: translateY(0);
 }
 
 .hero h2 {
@@ -95,7 +89,7 @@ body {
     position: absolute;
     bottom: -8px;
     left: 50%;
-    width: 70%; /* Langsung atur lebar penuh */
+    width: 70%;
     height: 3px;
     background: linear-gradient(90deg, transparent, #fff, transparent);
     transform: translateX(-50%);
@@ -105,16 +99,7 @@ body {
     color: #000000;
     font-style: italic;
     position: relative;
-    animation: glowText 3s ease-in-out infinite;
-}
-
-@keyframes glowText {
-    0%, 100% {
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-    }
-    50% {
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
-    }
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
 .hero p {
@@ -127,7 +112,7 @@ body {
     position: relative;
 }
 
-/* Button styles */
+/* Button styles - transisi disederhanakan */
 .about-btn {
     display: inline-block;
     background: linear-gradient(135deg, #C7D9E5 0%, rgba(199, 217, 229, 0.8) 100%);
@@ -136,7 +121,7 @@ body {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1px;
-    margin-top: 0px;
+    margin-top: 0;
     transition: all 0.3s ease;
     padding: 5px 15px;
     border-radius: 20px;
@@ -149,12 +134,12 @@ body {
 
 .about-btn:hover {
     color: white;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     background-color: #304258;
 }
 
-/* Static particles instead of animated ones */
+/* Static particles - menggunakan pendekatan yang sangat ringan */
 .particles {
     position: absolute;
     top: 0;
@@ -163,31 +148,21 @@ body {
     height: 100%;
     overflow: hidden;
     z-index: 0;
-    background-image: 
-        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 20% 40%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 40% 50%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 15% 70%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 25% 80%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 35% 90%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 45% 80%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 55% 70%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 65% 80%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 75% 90%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-        radial-gradient(circle at 95% 70%, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
-    background-size: 300px 300px;
+    background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.3) 1px, transparent 2px),
+                      radial-gradient(circle at 20% 40%, rgba(255, 255, 255, 0.3) 1px, transparent 2px),
+                      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 1px, transparent 2px),
+                      radial-gradient(circle at 40% 50%, rgba(255, 255, 255, 0.3) 1px, transparent 2px),
+                      radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.3) 1px, transparent 2px),
+                      radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.3) 1px, transparent 2px),
+                      radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.3) 1px, transparent 2px),
+                      radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.3) 1px, transparent 2px),
+                      radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.3) 1px, transparent 2px);
+    background-size: 150px 150px;
 }
 
-/* Non-animated version of loading screen */
+/* Menghapus loading screen */
 .loading-screen {
-    display: none; /* Sembunyikan loading screen sama sekali */
+    display: none;
 }
 
 /* Menu hamburger with CSS-only toggle */
@@ -217,7 +192,6 @@ body {
 @media (max-width: 768px) {
     body {
         background-position: center center;
-        overflow-y: auto;
     }
     
     .hero {
@@ -328,10 +302,5 @@ body {
         font-size: 12px;
         padding: 6px 16px;
         border-radius: 18px;
-    }
-    
-    .hero-content {
-        overflow-y: auto;
-        max-height: 80vh;
     }
 }
