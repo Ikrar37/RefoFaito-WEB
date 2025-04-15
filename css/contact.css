@@ -17,7 +17,7 @@
     to { opacity: 1; }
 }
 
-/* Background image dengan animasi yang lebih sederhana */
+/* Background image dengan animasi parallax */
 .contact-section::before {
     content: "";
     position: absolute;
@@ -31,7 +31,16 @@
     background-attachment: fixed;
     background-repeat: no-repeat;
     z-index: -1;
-    /* Animasi zoom dihapus untuk simplifikasi */
+    animation: parallaxBg 30s ease-in-out infinite alternate;
+}
+
+@keyframes parallaxBg {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 20%;
+    }
 }
 
 .contact-title {
@@ -54,7 +63,8 @@
 
 .contact-title h2 {
     display: inline-block;
-    background-color: #55788a;
+    background: linear-gradient(45deg, #407294, #55788a, #6e8fa0);
+    background-size: 300% 300%;
     color: white;
     padding: 10px 40px;
     border-radius: 15px;
@@ -62,9 +72,44 @@
     margin: 0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: gradientTitle 6s ease infinite;
 }
 
-/* Menghapus efek shimmer pada judul */
+.contact-title h2::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: rotate(45deg);
+    animation: shineEffect 3s linear infinite;
+}
+
+@keyframes gradientTitle {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes shineEffect {
+    0% {
+        transform: translateX(-150%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(150%) rotate(45deg);
+    }
+}
+
 .contact-container {
     display: flex;
     flex-direction: column;
@@ -79,7 +124,7 @@
 .contact-message {
     background-color: rgba(224, 232, 240, 0.9);
     border-radius: 15px;
-    padding: 20px 30px;
+    padding: 22px 32px;
     margin-bottom: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -87,6 +132,39 @@
     animation: fadeInUp 0.5s ease-out; /* Animasi lebih cepat */
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-message::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    animation: messageSweep 6s infinite;
+}
+
+@keyframes messageSweep {
+    0% {
+        left: -100%;
+    }
+    48% {
+        left: -100%;
+    }
+    50% {
+        left: 100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.contact-message:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 @keyframes fadeInUp {
@@ -101,7 +179,7 @@
 }
 
 .contact-message p {
-    font-size: 18px;
+    font-size: 22px;
     line-height: 1.5;
     color: #304258;
     margin: 10px 0;
@@ -112,8 +190,6 @@
     position: relative;
     display: inline-block;
 }
-
-/* Menghapus animasi underline */
 
 .contact-info {
     display: flex;
@@ -133,16 +209,33 @@
     text-decoration: none;
     color: #304258;
     font-size: 16px;
-    transition: all 0.3s ease; /* Transisi lebih sederhana */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     width: auto;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Menghapus animasi staggered dan ripple */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.contact-item::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    z-index: -1;
+    transition: all 0.4s ease;
 }
 
 .contact-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 0 20px rgba(84, 120, 138, 0.2);
+}
+
+.contact-item:hover img {
+    transform: rotate(15deg) scale(1.1);
 }
 
 .contact-item img {
@@ -152,10 +245,49 @@
     transition: all 0.3s ease;
 }
 
+/* Efek ripple untuk contact items */
+.contact-item .ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Float animation untuk semua item */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
 /* Warna untuk setiap platform */
+.whatsapp::before {
+    background: rgba(37, 211, 102, 0.08);
+    backdrop-filter: blur(5px);
+}
+
 .whatsapp:hover {
     background-color: rgba(37, 211, 102, 0.1);
     border-color: rgba(37, 211, 102, 0.3);
+}
+
+.email::before {
+    background: rgba(234, 67, 53, 0.08);
+    backdrop-filter: blur(5px);
 }
 
 .email:hover {
@@ -163,9 +295,19 @@
     border-color: rgba(234, 67, 53, 0.3);
 }
 
+.instagram::before {
+    background: linear-gradient(45deg, rgba(225, 48, 108, 0.08), rgba(176, 81, 186, 0.08));
+    backdrop-filter: blur(5px);
+}
+
 .instagram:hover {
     background-color: rgba(225, 48, 108, 0.1);
     border-color: rgba(225, 48, 108, 0.3);
+}
+
+.tiktok::before {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.05), rgba(82, 229, 231, 0.05));
+    backdrop-filter: blur(5px);
 }
 
 .tiktok:hover {
@@ -173,7 +315,40 @@
     border-color: rgba(0, 0, 0, 0.2);
 }
 
-/* Menghapus moving gradient */
+/* Loading spinner (hanya lingkaran) */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #304258;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Single spinner circle - no text */
+.loading-circle {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(199, 217, 229, 0.3);
+    border-top-color: #C7D9E5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 @media (max-width: 768px) {
     .contact-info {
@@ -201,6 +376,24 @@
     .contact-title h2 {
         font-size: 22px;
         padding: 10px 25px;
+    }
+    
+    /* Menyesuaikan animasi untuk perangkat mobile */
+    .contact-title h2::before {
+        animation: shineEffect 4s linear infinite;
+    }
+    
+    .contact-message::after {
+        animation: messageSweep 8s infinite;
+    }
+    
+    @keyframes parallaxBg {
+        0% {
+            background-position: 50% 0%;
+        }
+        100% {
+            background-position: 50% 20%;
+        }
     }
 }
 
@@ -237,6 +430,12 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded {
+    opacity: 1;
 }
 
 /* Pastikan footer berada di bagian bawah */
@@ -245,17 +444,13 @@ footer {
     margin-top: auto; /* Ini akan mendorong footer ke bagian bawah */
 }
 
-/* Penyesuaian untuk mobile */
-@media (max-width: 768px) {
-    .contact-section {
-        min-height: calc(100vh - 110px);
-        height: auto;
-        padding-bottom: 40px;
-    }
-    
-    footer {
-        position: relative;
-        bottom: 0;
-        width: 100%;
-    }
+/* Style untuk canvas partikel */
+.particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
 }

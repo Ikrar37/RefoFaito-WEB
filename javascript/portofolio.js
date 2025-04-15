@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Menambahkan event listener untuk input search
     searchInput.addEventListener('input', function() {
-        const searchTerm = searchInput.value.toLowerCase();
+        const searchTerm = searchInput.value.toLowerCase().trim();
         
         // Loop melalui semua item portofolio
         portfolioItems.forEach(function(item) {
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const description = item.querySelector('.portfolio-image-container img').alt.toLowerCase();
             
             // Memeriksa apakah judul atau deskripsi mengandung kata kunci pencarian
-            if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            if (searchTerm === '' || title.includes(searchTerm) || description.includes(searchTerm)) {
                 item.style.display = 'block'; // Tampilkan item
             } else {
                 item.style.display = 'none'; // Sembunyikan item
@@ -94,60 +94,56 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Menambahkan fitur filter/pencarian yang lebih canggih
+    // PERBAIKAN: Menambahkan fitur filter/pencarian dengan logika sederhana dan kuat
     function enhanceSearch() {
         searchBox.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
+            const searchTerm = this.value.toLowerCase().trim();
             let hasVisibleItems = false;
             
-            portfolioItems.forEach(item => {
-                const itemText = item.querySelector('.portfolio-info').textContent.toLowerCase();
-                
-                if (searchTerm === '' || itemText.includes(searchTerm)) {
-                    // Animasi fade-in untuk item yang cocok
-                    item.style.display = '';
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
+            // Hapus pesan "tidak ada hasil" jika ada
+            const noResultsMsg = document.querySelector('.no-results-message');
+            if (noResultsMsg) {
+                noResultsMsg.remove();
+            }
+            
+            // Jika pencarian kosong, tampilkan semua item
+            if (searchTerm === '') {
+                portfolioItems.forEach(item => {
+                    item.style.display = 'block';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                });
+                hasVisibleItems = true;
+            } else {
+                // Filter berdasarkan kata kunci pencarian
+                portfolioItems.forEach(item => {
+                    const itemTitle = item.querySelector('.portfolio-info h3').textContent.toLowerCase();
+                    const itemDesc = item.querySelector('.portfolio-image-container img').alt.toLowerCase();
                     
-                    setTimeout(() => {
-                        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    if (itemTitle.includes(searchTerm) || itemDesc.includes(searchTerm)) {
+                        item.style.display = 'block';
                         item.style.opacity = '1';
                         item.style.transform = 'translateY(0)';
-                    }, 50);
-                    
-                    hasVisibleItems = true;
-                } else {
-                    // Animasi fade-out untuk item yang tidak cocok
-                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    
-                    setTimeout(() => {
+                        hasVisibleItems = true;
+                    } else {
                         item.style.display = 'none';
-                    }, 500);
-                }
-            });
+                    }
+                });
+            }
             
-            // Tampilkan pesan jika tidak ada hasil
+            // Tampilkan pesan jika tidak ada hasil yang cocok
             if (!hasVisibleItems) {
-                if (!document.querySelector('.no-results-message')) {
-                    const noResults = document.createElement('div');
-                    noResults.classList.add('no-results-message');
-                    noResults.textContent = 'Tidak ada hasil ditemukan';
-                    noResults.style.textAlign = 'center';
-                    noResults.style.padding = '50px 0';
-                    noResults.style.color = '#304258';
-                    noResults.style.fontWeight = 'bold';
-                    noResults.style.width = '100%';
-                    noResults.style.animation = 'fadeIn 0.5s ease';
-                    
-                    portfolioGrid.appendChild(noResults);
-                }
-            } else {
-                const noResults = document.querySelector('.no-results-message');
-                if (noResults) {
-                    noResults.remove();
-                }
+                const noResults = document.createElement('div');
+                noResults.classList.add('no-results-message');
+                noResults.textContent = 'Tidak ada hasil ditemukan';
+                noResults.style.textAlign = 'center';
+                noResults.style.padding = '50px 0';
+                noResults.style.color = '#304258';
+                noResults.style.fontWeight = 'bold';
+                noResults.style.width = '100%';
+                noResults.style.animation = 'fadeIn 0.5s ease';
+                
+                portfolioGrid.appendChild(noResults);
             }
         });
         
