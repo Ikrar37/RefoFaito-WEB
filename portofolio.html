@@ -7,100 +7,11 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/portofolio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/search-box.css">
     <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Voltaire&display=swap" rel="stylesheet">
-    <style>
-        /* Tambahan style untuk animasi */
-        body {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        body.loaded {
-            opacity: 1;
-        }
-        
-        .portfolio-title.visible {
-            animation-play-state: running !important;
-        }
-        
-        .portfolio-item.visible {
-            animation-play-state: running !important;
-        }
-        
-        .portfolio-item.in-view {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        /* Efek ripple untuk click */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.7);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-            z-index: 10;
-        }
-        
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-        
-        /* Loading spinner (hanya lingkaran) */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #304258;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s;
-        }
-        
-        .loading-screen.fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        /* Single spinner circle - no text */
-        .loading-circle {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(199, 217, 229, 0.3);
-            border-top-color: #C7D9E5;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Efek hover khusus untuk search box */
-        .search-box.focused {
-            width: 220px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-    </style>
 </head>
-<body>
-    <!-- Loading Spinner (hanya lingkaran) -->
-    <div class="loading-screen">
-        <div class="loading-circle"></div>
-    </div>
-
+<body class="loaded">
     <header>
         <div class="container">
             <div class="logo">
@@ -109,12 +20,15 @@
                 </a>
             </div>
             
-            <!-- Tambahkan hamburger di sini -->
-            <div class="hamburger">
+            <!-- Menu toggle checkbox untuk mobile -->
+            <input type="checkbox" id="menu-toggle" style="display: none;">
+            
+            <!-- Hamburger menu dengan CSS-only toggle -->
+            <label for="menu-toggle" class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </label>
             
             <nav>
                 <ul>
@@ -131,19 +45,21 @@
 
     <!-- Portfolio Section -->
     <section class="portfolio-section">
-        <!-- Search Box dengan icon kaca pembesar -->
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" id="portfolio-search" placeholder="search">
+        <!-- Search Box dengan CSS-only functionality -->
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="portfolio-search" placeholder="search">
+            </div>
         </div>
         
-        <div class="portfolio-title">
+        <div class="portfolio-title visible">
             <h2>Portofolio</h2>
         </div>
 
         <div class="portfolio-grid">
             <!-- Portfolio Item 1 -->
-            <div class="portfolio-item" data-category="digital-marketing">
+            <div class="portfolio-item visible in-view" data-category="digital-marketing" data-keywords="digital marketing instagram 11.11 diskon">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
                         <img src="image/11 11.jpg" alt="Digital Marketing Instagram 11.11">
@@ -158,7 +74,7 @@
             </div>
 
             <!-- Portfolio Item 2 -->
-            <div class="portfolio-item" data-category="foto-hunting">
+            <div class="portfolio-item visible in-view" data-category="foto-hunting" data-keywords="foto hunting bukit bulu dua barru soppeng">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
                         <img src="image/bulu dua.jpg" alt="Foto Bukit di Bulu Dua">
@@ -173,7 +89,7 @@
             </div>
 
             <!-- Portfolio Item 3 -->
-            <div class="portfolio-item" data-category="digital-marketing">
+            <div class="portfolio-item visible in-view" data-category="digital-marketing" data-keywords="digital marketing tiktok trend lavuvu">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
                         <img src="image/lavuvu tiktok.jpg" alt="Digital Marketing TikTok">
@@ -188,7 +104,7 @@
             </div>
 
             <!-- Portfolio Item 4 -->
-            <div class="portfolio-item" data-category="foto-hunting">
+            <div class="portfolio-item visible in-view" data-category="foto-hunting" data-keywords="foto hunting tebing apparalang bulukumba">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
                         <img src="image/apparalang.jpg" alt="Foto Tebing di Apparalang">
@@ -203,7 +119,7 @@
             </div>
 
             <!-- Portfolio Item 5 -->
-            <div class="portfolio-item" data-category="foto-hunting">
+            <div class="portfolio-item visible in-view" data-category="foto-hunting" data-keywords="foto hunting celebes canyon barru sulawesi selatan">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
                         <img src="image/Celebes canyon.jpg" alt="Celebes canyon di Barru">
@@ -218,7 +134,7 @@
             </div>
 
             <!-- Portfolio Item 6 -->
-            <div class="portfolio-item" data-category="tugas">
+            <div class="portfolio-item visible in-view" data-category="tugas" data-keywords="tugas pengantar bisnis digital desain prototype waid">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
                         <img src="image/WaidV2.png" alt="Waid">
@@ -232,6 +148,10 @@
                 </div>
             </div>
             
+            <!-- Message for no results -->
+            <div id="no-results" class="no-results-message" style="display: none;">
+                Tidak ada hasil ditemukan
+            </div>
         </div>
     </section>
 
@@ -240,27 +160,7 @@
         <p>&copy;2025 RefoFaito. All rights reserved.</p>
     </footer>
 
-    <script src="javascript/portofolio.js"></script>
-    <script src="javascript/humbermenu.js"></script>
-    <script src="javascript/portofolio.js"></script>
-    <script src="javascript/common.js"></script>
-    
-    <script>
-        // Script loading screen (sama seperti di contact.html dan aboutme.html)
-        window.addEventListener('load', function() {
-            // Sembunyikan loading screen setelah 1 detik
-            setTimeout(function() {
-                document.querySelector('.loading-screen').classList.add('fade-out');
-                document.body.classList.add('loaded');
-                // Hapus loading screen dari DOM setelah animasi selesai
-                setTimeout(function() {
-                    const loadingScreen = document.querySelector('.loading-screen');
-                    if (loadingScreen) {
-                        loadingScreen.remove();
-                    }
-                }, 500);
-            }, 1000);
-        });
-    </script>
+    <script src="javascript/search.js"></script>
+
 </body>
 </html>

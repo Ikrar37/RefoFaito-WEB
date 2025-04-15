@@ -1,27 +1,25 @@
-/* home.css - hanya untuk halaman home */
+/* home.css - hanya untuk halaman home - Versi Diperbaiki */
 html, body {
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 body {
     background-color: #f0f0f0;
     background-image: url('../image/tes.jpg');
     background-size: cover;
-    background-position: center 30%; /* Turunkan 30% dari atas */
+    background-position: center 30%;
     background-attachment: fixed;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    animation: fadeIn 1.2s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Background zoom animation */
+.animate-bg {
+    animation: slowBgZoom 20s ease-in-out infinite;
 }
 
-/* Efek animasi parallax sederhana */
 @keyframes slowBgZoom {
     0% {
         background-size: 100%;
@@ -37,29 +35,8 @@ body {
     }
 }
 
-/* Animasi background untuk mobile */
-@keyframes simpleBgMove {
-    0% {
-        background-position: center 25%;
-    }
-    50% {
-        background-position: center 35%;
-    }
-    100% {
-        background-position: center 25%;
-    }
-}
-
-.animate-bg {
-    animation: slowBgZoom 20s ease-in-out infinite;
-}
-
-.simple-bg-animation {
-    animation: simpleBgMove 15s ease-in-out infinite !important;
-}
-
 .hero {
-    background-color: rgba(42, 91, 218, 0.45); /* Pertahankan warna overlay biru */
+    background-color: rgba(42, 91, 218, 0.45);
     color: white;
     flex: 1;
     display: flex;
@@ -71,7 +48,7 @@ body {
     overflow: hidden;
 }
 
-/* Efek gelombang di bagian bawah hero */
+/* Wave effect at bottom */
 .hero::after {
     content: "";
     position: absolute;
@@ -97,22 +74,10 @@ body {
     border-radius: 20px;
     backdrop-filter: blur(5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transform: translateY(-30px);
-    animation: floatIn 1s ease-out forwards;
     position: relative;
     z-index: 1;
     border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-@keyframes floatIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(-30px);
-    }
+    opacity: 1; /* Pastikan konten terlihat */
 }
 
 .hero h2 {
@@ -121,20 +86,8 @@ body {
     text-align: center;
     color: white;
     text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-    animation: appearFromLeft 1.2s ease-out;
     position: relative;
     display: inline-block;
-}
-
-@keyframes appearFromLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
 
 .hero h2::after {
@@ -142,17 +95,10 @@ body {
     position: absolute;
     bottom: -8px;
     left: 50%;
-    width: 0;
+    width: 70%; /* Langsung atur lebar penuh */
     height: 3px;
     background: linear-gradient(90deg, transparent, #fff, transparent);
     transform: translateX(-50%);
-    animation: lineExpand 1.5s ease-out forwards;
-    animation-delay: 0.8s;
-}
-
-@keyframes lineExpand {
-    from { width: 0; }
-    to { width: 70%; }
 }
 
 .hero h2 .greeting {
@@ -177,22 +123,11 @@ body {
     margin-bottom: 25px;
     text-align: center;
     color: #FFFFFF;
-    animation: fadeUp 1.4s ease-out;
     text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
     position: relative;
 }
 
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+/* Button styles */
 .about-btn {
     display: inline-block;
     background: linear-gradient(135deg, #C7D9E5 0%, rgba(199, 217, 229, 0.8) 100%);
@@ -202,52 +137,24 @@ body {
     font-weight: 600;
     letter-spacing: 1px;
     margin-top: 0px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     padding: 5px 15px;
     border-radius: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     position: relative;
     overflow: hidden;
-    animation: buttonAppear 1.6s ease-out;
     text-transform: uppercase;
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-@keyframes buttonAppear {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.about-btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: rgba(48, 66, 88, 0.9);
-    transition: width 0.4s ease;
-    z-index: -1;
-    border-radius: 30px;
-}
-
 .about-btn:hover {
     color: white;
-    transform: translateY(-5px) scale(1.03);
+    transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background-color: #304258;
 }
 
-.about-btn:hover::before {
-    width: 100%;
-}
-
-/* Particle effect */
+/* Static particles instead of animated ones */
 .particles {
     position: absolute;
     top: 0;
@@ -256,33 +163,74 @@ body {
     height: 100%;
     overflow: hidden;
     z-index: 0;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 20% 40%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 40% 50%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 15% 70%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 25% 80%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 35% 90%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 45% 80%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 55% 70%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 65% 80%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 75% 90%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 95% 70%, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+    background-size: 300px 300px;
 }
 
-.particle {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-    pointer-events: none;
+/* Non-animated version of loading screen */
+.loading-screen {
+    display: none; /* Sembunyikan loading screen sama sekali */
 }
 
-/* Perbaikan untuk tampilan mobile */
+/* Menu hamburger with CSS-only toggle */
+#menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #333;
+    transition: all 0.3s ease;
+}
+
+/* Mobile styles */
 @media (max-width: 768px) {
     body {
-        background-position: center center; /* Perbaikan posisi background */
+        background-position: center center;
+        overflow-y: auto;
     }
     
     .hero {
-        padding-top: 40px; /* Mengurangi ruang kosong di atas */
-        align-items: center; /* Lebih baik untuk centering */
+        padding-top: 40px;
+        align-items: center;
     }
     
     .hero-content {
         padding: 20px;
-        margin: 0 15px;
-        transform: translateY(0); /* Reset transform untuk mobile */
-        width: 90%; /* Lebarkan card */
-        max-width: 450px; /* Batasi lebar maksimum */
-        background-color: rgba(255, 255, 255, 0.2); /* Sedikit lebih transparan */
+        margin: 15px;
+        width: 90%;
+        max-width: 450px;
+        background-color: rgba(255, 255, 255, 0.2);
     }
     
     .hero h2 {
@@ -293,8 +241,7 @@ body {
     
     .hero h2::after {
         bottom: -5px;
-        height: 2px; /* Lebih tipis */
-        animation: lineExpand 1.2s ease-out forwards;
+        height: 2px;
     }
     
     .hero p {
@@ -303,48 +250,69 @@ body {
         margin-bottom: 20px;
     }
     
-    /* Style khusus untuk tombol about-btn di mobile */
     .about-btn {
         font-size: 14px;
         padding: 8px 20px;
         margin-top: 5px;
-        border-radius: 25px; /* Sedikit lebih bulat */
-        display: block; /* Full width pada mobile */
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
+        border-radius: 25px;
+        display: inline-block;
+        width: auto;
     }
     
     .hero::after {
         height: 30px;
         background-size: 25px 25px;
-        bottom: -5px; /* Posisikan sedikit lebih tinggi */
+        bottom: -5px;
     }
     
-    /* Kurangi jumlah partikel pada mobile */
-    .particles .particle:nth-child(n+20) {
-        display: none;
+    /* Mobile menu */
+    .hamburger {
+        display: flex;
     }
     
-    /* Perbaikan animasi pada mobile */
-    @keyframes floatIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: white;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 99;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        padding-top: 80px;
+    }
+    
+    nav ul li {
+        margin: 10px 0;
+    }
+    
+    #menu-toggle:checked ~ nav {
+        right: 0;
+    }
+    
+    #menu-toggle:checked ~ .hamburger span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    
+    #menu-toggle:checked ~ .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    #menu-toggle:checked ~ .hamburger span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
     }
 }
 
-/* Penyesuaian khusus untuk layar sangat kecil */
+/* Very small screens */
 @media (max-width: 480px) {
     .hero-content {
         padding: 15px;
-        margin-top: 20px; /* Tambah sedikit ruang di atas */
+        margin-top: 20px;
     }
     
     .hero h2 {
@@ -357,137 +325,13 @@ body {
     }
     
     .about-btn {
-        font-size: 13px;
-        padding: 7px 10px;
-        width: 90%; /* Lebih lebar pada layar sangat kecil */
+        font-size: 12px;
+        padding: 6px 16px;
+        border-radius: 18px;
     }
     
-    /* Pastikan konten tidak terpotong */
     .hero-content {
         overflow-y: auto;
         max-height: 80vh;
-    }
-    
-    /* Memperbaiki posisi partikel pada layar kecil */
-    .particles {
-        height: 80%;
-    }
-}
-
-/* Animasi untuk loading */
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #304258;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.8s ease, visibility 0.8s;
-}
-
-.loading-screen.fade-out {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loading-animation {
-    width: 100px;
-    height: 100px;
-    position: relative;
-}
-
-.loading-circle {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 5px solid transparent;
-    border-top-color: #C7D9E5;
-    border-radius: 50%;
-    animation: spin 1.2s linear infinite;
-}
-
-.loading-circle:nth-child(2) {
-    border: 5px solid transparent;
-    border-bottom-color: #4a90e2;
-    animation: spin 1.5s linear infinite reverse;
-}
-
-.loading-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 16px;
-    letter-spacing: 1px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Penyesuaian untuk posisi hero di mobile - tambahkan di bagian bawah home.css */
-@media (max-width: 768px) {
-    .hero {
-        align-items: flex-start; /* Ubah dari center ke flex-start */
-        padding-top: 80px; /* Tambah padding atas */
-    }
-    
-    .hero-content {
-        margin-top: 20px; /* Tambah margin atas */
-        transform: translateY(0); /* Reset transform yang ada */
-    }
-}
-
-/* Untuk layar yang lebih kecil */
-@media (max-width: 480px) {
-    .hero {
-        padding-top: 60px; /* Kurangi padding untuk layar sangat kecil */
-    }
-    
-    .hero-content {
-        margin-top: 10px; /* Kurangi margin untuk layar sangat kecil */
-    }
-}
-
-/* Perbaikan untuk tombol about-me di mobile */
-@media (max-width: 768px) {
-    .about-btn {
-        width: auto !important; /* Override properti width sebelumnya */
-        padding: 8px 20px;
-        margin: 5px auto; /* Tetap rata tengah */
-        display: inline-block; /* Ubah dari block ke inline-block */
-    }
-}
-
-@media (max-width: 480px) {
-    .about-btn {
-        padding: 7px 18px;
-        font-size: 13px;
-    }
-}
-
-/* Perbaikan untuk tombol about-me lebih kecil di mobile */
-@media (max-width: 768px) {
-    .about-btn {
-        width: auto !important; /* Override properti width sebelumnya */
-        display: inline-block !important; /* Ubah dari block ke inline-block */
-        padding: 6px 16px !important; /* Padding lebih kecil */
-        margin: 5px auto; /* Tetap rata tengah */
-        font-size: 12px !important; /* Font lebih kecil */
-        border-radius: 20px !important; /* Border radius lebih kecil */
-    }
-}
-
-@media (max-width: 480px) {
-    .about-btn {
-        padding: 5px 14px !important; /* Padding lebih kecil lagi */
-        font-size: 11px !important; /* Font lebih kecil lagi */
-        border-radius: 18px !important; /* Border radius lebih kecil lagi */
     }
 }

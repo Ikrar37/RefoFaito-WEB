@@ -9,59 +9,8 @@
     <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Voltaire&display=swap" rel="stylesheet">
-    <style>
-        /* Style tambahan untuk animasi loader (lebih sederhana) */
-        body {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        body.loaded {
-            opacity: 1;
-        }
-        
-        /* Loading spinner yang lebih sederhana (hanya lingkaran) */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #304258;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s;
-        }
-        
-        .loading-screen.fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        /* Single spinner circle - no text */
-        .loading-circle {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(199, 217, 229, 0.3);
-            border-top-color: #C7D9E5;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
 </head>
-<body>
-    <!-- Loading Spinner (hanya lingkaran) -->
-    <div class="loading-screen">
-        <div class="loading-circle"></div>
-    </div>
-    
+<body class="loaded">
     <header>
         <div class="container">
             <div class="logo">
@@ -70,11 +19,15 @@
                 </a>
             </div>
             
-            <div class="hamburger">
+            <!-- Menu toggle checkbox untuk mobile -->
+            <input type="checkbox" id="menu-toggle" style="display: none;">
+            
+            <!-- Hamburger menu dengan CSS-only toggle -->
+            <label for="menu-toggle" class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </label>
             
             <nav>
                 <ul>
@@ -90,14 +43,17 @@
     <div class="blue-bar"></div>
 
     <section class="contact-section">
+        <!-- Particles background dengan CSS -->
+        <div class="particles-background"></div>
+        
         <div class="contact-title">
             <h2>Contact</h2>
         </div>
         
         <div class="contact-container">
             <div class="contact-message">
-                <p>Jika anda membutuhkan bantuan dalam proyek Digital Marketing atau butuh foto foto estetik, saya siap membantu!</p>
-                <p>Hubungi saya melalui kontak di bawah ini</p>
+                <p class="animated-text">Jika anda membutuhkan bantuan dalam proyek Digital Marketing atau butuh foto foto estetik, saya siap membantu!</p>
+                <p class="animated-text delayed">Hubungi saya melalui kontak di bawah ini</p>
             </div>
             
             <div class="contact-info">
@@ -130,26 +86,7 @@
         </div>
     </footer>
 
-    <script src="javascript/humbermenu.js"></script>
     <script src="javascript/contact.js"></script>
-    <script src="javascript/common.js"></script>
-    
-    <script>
-        // Script loading screen (lebih sederhana)
-        window.addEventListener('load', function() {
-            // Sembunyikan loading screen setelah 1 detik
-            setTimeout(function() {
-                document.querySelector('.loading-screen').classList.add('fade-out');
-                document.body.classList.add('loaded');
-                // Hapus loading screen dari DOM setelah animasi selesai
-                setTimeout(function() {
-                    const loadingScreen = document.querySelector('.loading-screen');
-                    if (loadingScreen) {
-                        loadingScreen.remove();
-                    }
-                }, 500);
-            }, 1000);
-        });
-    </script>
+
 </body>
 </html>
