@@ -64,7 +64,7 @@
             <div class="portfolio-item visible in-view" data-category="digital-marketing" data-keywords="digital marketing instagram 11.11 diskon">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
-                        <img src="image/11 11cprs.jpg" width="200" height="200" alt="Digital Marketing Instagram 11.11">
+                        <img src="image/11 11cprs.jpg" width="200" height="200" alt="Digital Marketing Instagram 11.11" loading="lazy">
                     </div>
                 </div>
                 <div class="portfolio-info">
@@ -79,7 +79,7 @@
             <div class="portfolio-item visible in-view" data-category="foto-hunting" data-keywords="foto hunting bukit bulu dua barru soppeng">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
-                        <img src="image/bulu duacprs.jpg" width="200" height="200" alt="Foto Bukit di Bulu Dua">
+                        <img src="image/bulu duacprs.jpg" width="200" height="200" alt="Foto Bukit di Bulu Dua" loading="lazy">
                     </div>
                 </div>
                 <div class="portfolio-info">
@@ -94,7 +94,7 @@
             <div class="portfolio-item visible in-view" data-category="digital-marketing" data-keywords="digital marketing tiktok trend lavuvu">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
-                        <img src="image/lavuvu tiktok.jpg" width="200" height="200" alt="Digital Marketing TikTok">
+                        <img src="image/lavuvu tiktok.jpg" width="200" height="200" alt="Digital Marketing TikTok" loading="lazy">
                     </div>
                 </div>
                 <div class="portfolio-info">
@@ -109,7 +109,7 @@
             <div class="portfolio-item visible in-view" data-category="foto-hunting" data-keywords="foto hunting tebing apparalang bulukumba">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
-                        <img src="image/apparalangcprs.jpg" width="200" height="200" alt="Foto Tebing di Apparalang">
+                        <img src="image/apparalangcprs.jpg" width="200" height="200" alt="Foto Tebing di Apparalang" loading="lazy">
                     </div>
                 </div>
                 <div class="portfolio-info">
@@ -124,7 +124,7 @@
             <div class="portfolio-item visible in-view" data-category="foto-hunting" data-keywords="foto hunting celebes canyon barru sulawesi selatan">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
-                        <img src="image/Celebes canyoncprs.jpg" width="200" height="200" alt="Celebes canyon di Barru">
+                        <img src="image/Celebes canyoncprs.jpg" width="200" height="200" alt="Celebes canyon di Barru" loading="lazy">
                     </div>
                 </div>
                 <div class="portfolio-info">
@@ -139,7 +139,7 @@
             <div class="portfolio-item visible in-view" data-category="tugas" data-keywords="tugas pengantar bisnis digital desain prototype waid">
                 <div class="portfolio-image-container">
                     <div class="portfolio-image-frame">
-                        <img src="image/WaidV2cmprs.png" width="200" height="200" alt="Waid">
+                        <img src="image/WaidV2cmprs.png" width="200" height="200" alt="Waid" loading="lazy">
                     </div>
                 </div>
                 <div class="portfolio-info">
@@ -162,6 +162,54 @@
         <p>&copy;2025 RefoFaito. All rights reserved.</p>
     </footer>
 
-    <script defer src="javascript/search.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('portfolio-search');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const noResultsMsg = document.getElementById('no-results');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let hasVisibleItems = false;
+            
+            // Reset tampilan "tidak ada hasil"
+            noResultsMsg.style.display = 'none';
+            
+            // Jika pencarian kosong, tampilkan semua item
+            if (searchTerm === '') {
+                portfolioItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                return;
+            }
+            
+            // Filter berdasarkan kata kunci pencarian
+            portfolioItems.forEach(item => {
+                const keywords = item.getAttribute('data-keywords').toLowerCase();
+                
+                if (keywords.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasVisibleItems = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Tampilkan pesan jika tidak ada hasil yang cocok
+            if (!hasVisibleItems) {
+                noResultsMsg.style.display = 'block';
+            }
+        });
+        
+        // Tambahkan efek fokus pada search box
+        searchInput.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        searchInput.addEventListener('blur', function() {
+            this.parentElement.classList.remove('focused');
+        });
+    });
+    </script>
 </body>
 </html>
