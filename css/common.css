@@ -205,7 +205,8 @@ nav ul li a.active {
     height: 21px;
     position: absolute;
     right: 30px;
-    top: 25px;
+    top: 50%; /* Posisikan di tengah secara vertikal */
+    transform: translateY(-50%); /* Sejajarkan dengan tepat di tengah */
     flex-direction: column;
     justify-content: space-between;
     z-index: 1001;
