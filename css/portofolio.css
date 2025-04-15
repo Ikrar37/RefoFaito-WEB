@@ -1,4 +1,4 @@
-/* Styles khusus untuk halaman Portfolio */
+/* Styles khusus untuk halaman Portfolio - versi teroptimasi */
 .portfolio-section {
     flex: 1;
     padding: 50px 0;
@@ -8,11 +8,11 @@
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    min-height: calc(100vh - 110px); /* Tinggi minimum untuk memastikan background penuh */
-    animation: fadeIn 0.8s ease-in-out; /* Animasi fade in saat load */
+    min-height: calc(100vh - 110px);
+    animation: fadeIn 0.8s ease-in-out;
 }
 
-/* Tambahkan pseudo-element untuk background fixed */
+/* Background fixed sederhana */
 .portfolio-section::before {
     content: "";
     position: fixed;
@@ -20,7 +20,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgba(236, 242, 247, 0.85), rgba(236, 242, 247, 0.85)), url('../image/tes.jpg');
+    background-image: linear-gradient(rgba(236, 242, 247, 0.9), rgba(236, 242, 247, 0.9)), url('../image/tes.jpg');
     background-size: cover;
     background-position: center;
     z-index: -1;
@@ -96,7 +96,7 @@
     }
 }
 
-/* Search container untuk positioning */
+/* Search container */
 .search-container {
     position: absolute;
     top: 20px;
@@ -105,7 +105,7 @@
     animation: slideLeft 0.7s ease-out forwards;
 }
 
-/* Search Box dengan animasi */
+/* Search Box styling */
 .search-box {
     background-color: #55788a;
     border-radius: 20px;
@@ -165,23 +165,13 @@
     opacity: 0.5;
 }
 
-/* CSS-only filtering - Selector for portfolio items */
-#portfolio-search:placeholder-shown ~ .portfolio-grid .portfolio-item {
-    display: block !important;
-}
-
-/* Make items display none by default when search is not empty */
-#portfolio-search:not(:placeholder-shown) ~ .portfolio-grid .portfolio-item {
-    display: none !important;
-}
-
 /* Portfolio Grid */
 .portfolio-grid {
     width: 90%;
     max-width: 800px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 150px 50px; /* Mengurangi gap horizontal, mempertahankan vertikal */
+    gap: 150px 50px;
     padding: 50px 0;
     min-height: 300px;
     position: relative;
@@ -201,7 +191,7 @@
     grid-column: 1 / -1;
 }
 
-/* Portfolio Items dengan animasi */
+/* Portfolio Items */
 .portfolio-item {
     display: flex;
     flex-direction: column;
@@ -209,13 +199,8 @@
     overflow: hidden;
     background-color: #f5f7fa;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px; /* Tambahan margin bawah untuk mobile */
+    margin-bottom: 30px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.portfolio-item.visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -231,7 +216,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    aspect-ratio: 1/1; /* Memastikan container berbentuk persegi */
+    aspect-ratio: 1/1;
     transition: background-color 0.3s ease;
 }
 
@@ -244,11 +229,11 @@
     border-radius: 10px;
     overflow: hidden;
     width: 80%;
-    aspect-ratio: 1/1; /* Memastikan frame tetap persegi */
+    aspect-ratio: 1/1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0; /* Menghilangkan padding untuk memaksimalkan ruang gambar */
+    padding: 0;
     transition: all 0.4s ease;
     position: relative;
 }
@@ -278,7 +263,7 @@
 .portfolio-image-frame img {
     width: 90%;
     height: 90%;
-    object-fit: contain; /* Memastikan gambar tidak terdistorsi */
+    object-fit: contain;
     transition: all 0.5s ease;
     z-index: 0;
 }
@@ -381,33 +366,7 @@
     width: 100%;
 }
 
-/* Cursor custom untuk portfolio items */
-.portfolio-item {
-    cursor: pointer;
-}
-
-/* Ripple effect with CSS */
-.portfolio-item:active::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    animation: rippleEffect 0.6s linear;
-}
-
-@keyframes rippleEffect {
-    to {
-        transform: translate(-50%, -50%) scale(30);
-        opacity: 0;
-    }
-}
-
-/* Hamburger menu dengan CSS-only toggle */
+/* Hamburger menu styling */
 #menu-toggle {
     display: none;
 }
@@ -420,6 +379,7 @@
     height: 21px;
     cursor: pointer;
     z-index: 100;
+    margin-right: 15px;
 }
 
 .hamburger span {
@@ -428,10 +388,6 @@
     width: 100%;
     background-color: #333;
     transition: all 0.3s ease;
-}
-
-body.loaded {
-    opacity: 1;
 }
 
 /* Responsive Design */
@@ -449,15 +405,15 @@ body.loaded {
     }
     
     .portfolio-image-container {
-        aspect-ratio: 1/1; /* Tetap persegi di mobile */
+        aspect-ratio: 1/1;
         padding: 20px;
-        height: auto; /* Biarkan tinggi ditentukan oleh aspect-ratio */
+        height: auto;
     }
     
     .portfolio-image-frame {
         width: 80%;
-        aspect-ratio: 1/1; /* Tetap persegi di mobile */
-        height: auto; /* Biarkan tinggi ditentukan oleh aspect-ratio */
+        aspect-ratio: 1/1;
+        height: auto;
     }
     
     .portfolio-image-frame img {
@@ -474,13 +430,12 @@ body.loaded {
     }
     
     .search-container {
-        /* Tetap mempertahankan posisi absolute */
         top: 20px;
-        right: 20px; /* Lebih dekat ke tepian di mobile */
+        right: 20px;
     }
     
     .search-box {
-        width: 160px; /* Sedikit lebih kecil */
+        width: 160px;
     }
     
     /* Mobile menu */
@@ -503,10 +458,11 @@ body.loaded {
     nav ul {
         flex-direction: column;
         padding-top: 80px;
+        text-align: center;
     }
     
     nav ul li {
-        margin: 10px 0;
+        margin: 15px 0;
     }
     
     #menu-toggle:checked ~ nav {
@@ -533,276 +489,16 @@ body.loaded {
     }
     
     .portfolio-item {
-        max-width: 280px; /* Lebih kecil lagi */
+        max-width: 280px;
     }
     
     .portfolio-grid {
         width: 90%;
-        gap: 25px; /* Kurangi gap lagi */
+        gap: 25px;
     }
     
     .see-more {
         padding: 6px 15px;
         font-size: 12px;
     }
-}
-
-/* CSS untuk fitur pencarian */
-/* Gunakan selectors yang cocok dengan data-keywords untuk setiap item */
-#portfolio-search[value*="digital"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="digital"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="marketing"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="marketing"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="instagram"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="instagram"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="11.11"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="11.11"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="diskon"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="diskon"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="foto"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="foto"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="hunting"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="hunting"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="bukit"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="bukit"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="bulu"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="bulu"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="dua"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="dua"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="barru"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="barru"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="soppeng"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="soppeng"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="tiktok"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="tiktok"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="trend"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="trend"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="lavuvu"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="lavuvu"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="tebing"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="tebing"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="apparalang"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="apparalang"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="bulukumba"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="bulukumba"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="celebes"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="celebes"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="canyon"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="canyon"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="sulawesi"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="sulawesi"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="selatan"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="selatan"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="tugas"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="tugas"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="pengantar"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="pengantar"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="bisnis"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="bisnis"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="digital"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="digital"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="desain"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="desain"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="prototype"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="prototype"] {
-    display: block !important;
-}
-
-#portfolio-search[value*="waid"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="waid"] {
-    display: block !important;
-}
-
-/* CSS untuk fitur pencarian sederhana - tambahkan ke portofolio.css */
-
-/* Saat search input tidak memiliki konten/kosong, tampilkan semua item portfolio */
-#portfolio-search:placeholder-shown ~ .portfolio-grid .portfolio-item {
-    display: block !important;
-}
-
-/* Saat search input memiliki konten, sembunyikan semua item portfolio secara default */
-#portfolio-search:not(:placeholder-shown) ~ .portfolio-grid .portfolio-item {
-    display: none !important;
-}
-
-/* Tampilkan pesan "tidak ada hasil" hanya ketika pencarian aktif dan tidak ada hasil yang cocok */
-#portfolio-search:not(:placeholder-shown) ~ .portfolio-grid .portfolio-item:not([style*="display: block"]) ~ #no-results {
-    display: block !important;
-}
-
-/* Sembunyikan pesan "tidak ada hasil" ketika ada hasil yang cocok atau pencarian kosong */
-#portfolio-search:placeholder-shown ~ .portfolio-grid #no-results {
-    display: none !important;
-}
-
-/* Selector untuk kategori dan kata kunci */
-/* Digital Marketing */
-#portfolio-search[value*="digital"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="digital"],
-#portfolio-search[value*="marketing"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="marketing"],
-#portfolio-search[value*="instagram"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="instagram"],
-#portfolio-search[value*="11"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="11.11"],
-#portfolio-search[value*="diskon"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="diskon"],
-#portfolio-search[value*="tiktok"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="tiktok"],
-#portfolio-search[value*="trend"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="trend"],
-#portfolio-search[value*="lavuvu"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="lavuvu"] {
-    display: block !important;
-}
-
-/* Foto Hunting */
-#portfolio-search[value*="foto"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="foto"],
-#portfolio-search[value*="hunting"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="hunting"],
-#portfolio-search[value*="bukit"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="bukit"],
-#portfolio-search[value*="bulu"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="bulu"],
-#portfolio-search[value*="dua"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="dua"],
-#portfolio-search[value*="barru"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="barru"],
-#portfolio-search[value*="soppeng"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="soppeng"],
-#portfolio-search[value*="tebing"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="tebing"],
-#portfolio-search[value*="apparalang"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="apparalang"],
-#portfolio-search[value*="bulukumba"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="bulukumba"],
-#portfolio-search[value*="celebes"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="celebes"],
-#portfolio-search[value*="canyon"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="canyon"],
-#portfolio-search[value*="sulawesi"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="sulawesi"],
-#portfolio-search[value*="selatan"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="selatan"] {
-    display: block !important;
-}
-
-/* Tugas */
-#portfolio-search[value*="tugas"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="tugas"],
-#portfolio-search[value*="pengantar"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="pengantar"],
-#portfolio-search[value*="bisnis"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="bisnis"],
-#portfolio-search[value*="desain"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="desain"],
-#portfolio-search[value*="prototype"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="prototype"],
-#portfolio-search[value*="waid"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="waid"] {
-    display: block !important;
-}
-
-/* CSS untuk menu hamburger tanpa JavaScript */
-
-/* Sembunyikan checkbox menu toggle */
-#menu-toggle {
-    display: none;
-}
-
-/* Styling untuk hamburger menu mobile */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-    z-index: 100;
-    margin-right: 15px;
-}
-
-.hamburger span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: #333;
-    transition: all 0.3s ease;
-}
-
-/* Tampilkan hamburger hanya di layar mobile */
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-    
-    /* Style untuk menu navigasi mobile */
-    nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100vh;
-        background-color: white;
-        transition: right 0.3s ease;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        z-index: 99;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        padding-top: 80px;
-        text-align: center;
-    }
-    
-    nav ul li {
-        margin: 15px 0;
-    }
-    
-    /* Ketika checkbox dicentang, tampilkan menu navigasi */
-    #menu-toggle:checked ~ nav {
-        right: 0;
-    }
-    
-    /* Animasi hamburger menjadi X saat dibuka */
-    #menu-toggle:checked ~ .hamburger span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-    
-    #menu-toggle:checked ~ .hamburger span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    #menu-toggle:checked ~ .hamburger span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-}
-
-#portfolio-search[value*="kata-kunci-baru"]:not(:placeholder-shown) ~ .portfolio-grid [data-keywords*="kata-kunci-baru"] {
-    display: block !important;
 }

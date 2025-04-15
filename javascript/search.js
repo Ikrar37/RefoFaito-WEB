@@ -1,4 +1,4 @@
-// Kode JavaScript minimal hanya untuk fungsi pencarian
+// JavaScript pencarian yang dioptimasi
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('portfolio-search');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
