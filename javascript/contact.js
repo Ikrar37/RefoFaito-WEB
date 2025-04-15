@@ -422,3 +422,51 @@ function initParticles() {
     initParticlesArray();
     animateParticles();
 }
+
+// Tambahkan kode JavaScript ini ke file contact.js atau script di akhir contact.html
+
+// Fungsi untuk memperbaiki pesan kontak pada perangkat mobile
+function fixContactMessageOnMobile() {
+    // Deteksi apakah perangkat adalah mobile
+    const isMobile = window.innerWidth <= 768;
+    
+    // Dapatkan paragraf pertama dalam contact-message
+    const messageParagraph = document.querySelector('.contact-message p:first-child');
+    
+    if (messageParagraph) {
+        if (isMobile) {
+            // Untuk mobile: hapus semua tag <br> dan simpan teks asli
+            const originalText = messageParagraph.innerText;
+            
+            // Reset HTML dengan teks asli tanpa tag <br>
+            messageParagraph.innerHTML = originalText;
+            
+            // Gaya tambahan untuk memastikan teks tetap utuh
+            messageParagraph.style.whiteSpace = 'normal';
+            messageParagraph.style.wordBreak = 'keep-all';
+            messageParagraph.style.fontSize = '15px';
+            messageParagraph.style.lineHeight = '1.4';
+        } else {
+            // Untuk desktop: kembalikan format asli dengan tag <br>
+            // Pastikan ini hanya dijalankan sekali untuk menghindari duplikasi
+            if (!messageParagraph.querySelector('br')) {
+                // Cari posisi "butuh foto" untuk memasukkan tag <br>
+                const text = messageParagraph.innerText;
+                const marketingIndex = text.indexOf('Digital Marketing atau');
+                
+                if (marketingIndex !== -1) {
+                    const insertIndex = marketingIndex + 'Digital Marketing atau'.length;
+                    const newText = text.substring(0, insertIndex) + 
+                                   ' <br> ' + 
+                                   text.substring(insertIndex).trim();
+                    
+                    messageParagraph.innerHTML = newText;
+                }
+            }
+        }
+    }
+}
+
+// Jalankan fungsi saat halaman dimuat dan saat ukuran layar berubah
+window.addEventListener('DOMContentLoaded', fixContactMessageOnMobile);
+window.addEventListener('resize', fixContactMessageOnMobile);
