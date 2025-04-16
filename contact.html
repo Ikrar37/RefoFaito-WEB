@@ -66,11 +66,6 @@
                     <span>+62-822-4619-4259</span>
                 </a>
                 
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=muhammadikrar225@gmail.com" class="contact-item email" target="_blank">
-                    <img src="image/gmail-logo.png" alt="Email">
-                    <span>muhammadikrar225@gmail.com</span>
-                </a>
-                
                 <a href="https://www.instagram.com/mhmmdkrar/" class="contact-item instagram" target="_blank">
                     <img src="image/instagram.png" alt="Instagram">
                     <span>@mhmmmdkrar</span>
@@ -80,6 +75,56 @@
                     <img src="image/tik-tok.png" alt="TikTok">
                     <span>@_mhmmmdikrar</span>
                 </a>
+            </div>
+
+            <!-- Notifikasi sukses/error -->
+            <div id="formNotification" class="form-notification hidden">
+                <span id="notificationMessage"></span>
+                <button id="closeNotification">&times;</button>
+            </div>
+            
+            <!-- Form Masukan -->
+            <div class="feedback-form">
+                <h3>Berikan Masukan Anda</h3>
+                <!-- Ganti dengan email Anda -->
+                <form id="feedbackForm" action="https://formsubmit.co/muhammadikrar225@gmail.com" method="POST">
+                    <!-- FormSubmit configuration -->
+                    <input type="hidden" name="_subject" value="Pesan Baru dari Website RefoFaito">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html">
+                    
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Kategori</label>
+                        <select id="category" name="category" required>
+                            <option value="" disabled selected>Pilih kategori</option>
+                            <option value="website">Website</option>
+                            <option value="digitalmarketing">Digital Marketing</option>
+                            <option value="photography">Fotografi</option>
+                            <option value="general">Umum</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan/Masukan</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tulis masukan atau pesan Anda di sini" required></textarea>
+                    </div>
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">Saya setuju data ini disimpan untuk keperluan komunikasi</label>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="submit-btn">Kirim Masukan</button>
+                        <button type="reset" class="reset-btn">Reset</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

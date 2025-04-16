@@ -40,3 +40,90 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Tambahkan kode ini ke file contact.js atau buat file baru
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Animasi untuk menampilkan form kontak
+    const contactItems = document.querySelectorAll('.contact-item');
+    
+    setTimeout(() => {
+        contactItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
+    }, 500);
+    
+    // Inisialisasi form feedback
+    const feedbackForm = document.getElementById('feedbackForm');
+    const formNotification = document.getElementById('formNotification');
+    const notificationMessage = document.getElementById('notificationMessage');
+    const closeNotification = document.getElementById('closeNotification');
+    
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Ambil data dari form
+            const formData = new FormData(feedbackForm);
+            const formDataObj = {};
+            formData.forEach((value, key) => {
+                formDataObj[key] = value;
+            });
+            
+            // Simulasi proses pengiriman form (ganti dengan API sebenarnya nanti)
+            setTimeout(() => {
+                // Tampilkan notifikasi sukses
+                showNotification('Terima kasih! Masukan Anda telah berhasil dikirim.', 'success');
+                
+                // Reset form
+                feedbackForm.reset();
+            }, 1000);
+        });
+    }
+    
+    // Fungsi untuk menampilkan notifikasi
+    function showNotification(message, type = 'success') {
+        notificationMessage.textContent = message;
+        formNotification.classList.remove('hidden', 'error');
+        
+        if (type === 'error') {
+            formNotification.classList.add('error');
+        }
+        
+        // Sembunyikan notifikasi setelah 5 detik
+        setTimeout(() => {
+            formNotification.classList.add('hidden');
+        }, 5000);
+    }
+    
+    // Close button untuk notifikasi
+    if (closeNotification) {
+        closeNotification.addEventListener('click', function() {
+            formNotification.classList.add('hidden');
+        });
+    }
+    
+    // Form validasi tambahan jika diperlukan
+    const inputs = document.querySelectorAll('input, textarea, select');
+    
+    inputs.forEach(input => {
+        // Tambahkan efek highlight saat focus
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        input.addEventListener('blur', function() {
+            this.parentElement.classList.remove('focused');
+            
+            // Validasi sederhana
+            if (this.value.trim() === '') {
+                this.classList.add('error');
+            } else {
+                this.classList.remove('error');
+            }
+        });
+    });
+});
