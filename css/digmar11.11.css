@@ -9,6 +9,7 @@
     align-items: center;
     overflow-y: auto;
     animation: fadeIn 0.8s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
 }
 
 @keyframes fadeIn {
@@ -75,6 +76,8 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
 .portfolio-title h2:hover {
@@ -175,6 +178,8 @@
     transition: all 0.3s ease;
     position: relative;
     padding-left: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 .portfolio-description p::before {
@@ -220,6 +225,8 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 .back-button::before {
@@ -260,6 +267,26 @@
         transform: scale(4);
         opacity: 0;
     }
+}
+
+/* Header dan Footer font styles */
+header, footer {
+    font-family: 'Montserrat', sans-serif;
+}
+
+header .logo h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+nav ul li a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+footer p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 /* Responsive design */

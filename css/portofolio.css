@@ -9,6 +9,7 @@
     align-items: center;
     overflow-y: auto;
     min-height: calc(100vh - 110px);
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Background fixed sederhana */
@@ -50,6 +51,8 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
 .portfolio-title h2:hover {
@@ -119,12 +122,14 @@
     outline: none;
     text-align: center;
     transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .search-box input::placeholder {
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
     transition: opacity 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .search-box:focus-within input::placeholder {
@@ -154,6 +159,7 @@
     font-weight: bold;
     width: 100%;
     grid-column: 1 / -1;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Portfolio Items */
@@ -261,6 +267,7 @@
     line-height: 1.4;
     font-weight: normal;
     transition: color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .portfolio-item:hover .portfolio-info h3 {
@@ -313,6 +320,8 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 .see-more::before {
@@ -499,8 +508,6 @@
     }
 }
 
-/* Tambahkan kode berikut ke portofolio.css */
-
 /* Styling untuk kotak pencarian di navbar */
 .nav-search {
     display: none; /* Disembunyikan secara default */
@@ -522,6 +529,7 @@ body.portofolio .nav-search {
 
 .nav-search .search-box input {
     font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Menghilangkan garis pemisah setelah contact */
@@ -554,20 +562,6 @@ nav ul li.nav-search:hover {
     transform: none; /* Tidak perlu efek hover pada search box */
 }
 
-/* Tambahkan kode berikut ke portofolio.css */
-
-/* Styling untuk kotak pencarian di navbar */
-.nav-search {
-    display: none; /* Disembunyikan secara default */
-    margin-left: 15px; /* Beri ruang di sebelah kiri */
-    align-items: center;
-}
-
-/* Tampilkan search box hanya di halaman portofolio */
-body.portofolio .nav-search {
-    display: flex;
-}
-
 /* Menyesuaikan ukuran agar sama dengan tombol navbar */
 .nav-search .search-box {
     height: auto;
@@ -583,12 +577,7 @@ body.portofolio .nav-search {
 
 .nav-search .search-box input {
     font-size: 10px; /* Ukuran font sama dengan menu */
-    font-family: 'Orbitron', sans-serif; /* Agar sesuai dengan font menu */
-}
-
-/* Menghilangkan garis pemisah setelah contact */
-nav ul li:nth-last-child(2)::after {
-    display: none;
+    font-family: 'Montserrat', sans-serif; /* Agar sesuai dengan font menu */
 }
 
 /* Responsive styling */
@@ -610,13 +599,4 @@ nav ul li:nth-last-child(2)::after {
     .nav-search .search-box i {
         font-size: 14px;
     }
-}
-
-/* Override styling untuk menu navigation */
-nav ul li.nav-search::after {
-    display: none; /* Hapus pemisah setelah search box */
-}
-
-nav ul li.nav-search:hover {
-    transform: none; /* Tidak perlu efek hover pada search box */
 }

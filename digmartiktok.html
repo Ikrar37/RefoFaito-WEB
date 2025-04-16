@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/digmartiktok.css">
     <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Voltaire&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" rel="stylesheet">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
     <style>
         /* Loading spinner (hanya lingkaran) */
         .loading-screen {
@@ -50,6 +54,7 @@
             opacity: 0;
             transform: translateX(20px);
             transition: all 0.5s ease;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .animated-text.visible {
@@ -61,6 +66,10 @@
         video {
             object-fit: contain;
             background-color: black;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
         }
     </style>
 </head>
@@ -137,7 +146,6 @@
         </div>
     </footer>
 
-    <script src="javascript/humbermenu.js"></script>
     <script src="javascript/common.js"></script>
     
     <script>

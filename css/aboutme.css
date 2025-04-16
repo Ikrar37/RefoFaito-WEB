@@ -12,6 +12,7 @@
     align-items: center;
     overflow-y: auto;
     animation: fadeIn 1s ease-in-out; /* Animasi fade in saat halaman dimuat */
+    font-family: 'Montserrat', sans-serif;
 }
 
 @keyframes fadeIn {
@@ -46,6 +47,8 @@
     margin: 0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
 .about-title h2:hover {
@@ -148,6 +151,8 @@
     border-bottom: 2px solid #2A5BDA;
     text-align: center; /* Rata tengah untuk heading */
     transition: color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 .profile-desc:hover h3 {
@@ -163,6 +168,8 @@
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 .profile-desc:hover p {
@@ -227,6 +234,8 @@
     border-bottom: 2px solid #2A5BDA; /* Tambah border untuk konsistensi */
     transition: all 0.3s ease;
     position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 .education h3::after, .skills h3::after, .experience h3::after {
@@ -249,6 +258,7 @@
     list-style-type: none;
     padding-left: 5px; /* Kurangi padding */
     margin: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .education ul li, .skills ul li, .experience ul li {
@@ -260,6 +270,8 @@
     opacity: 0;
     animation: fadeInList 0.5s ease forwards;
     animation-delay: calc(0.1s * var(--li-index, 0));
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 @keyframes fadeInList {
@@ -318,6 +330,7 @@
     position: relative;
     padding-left: 20px; /* Konsistensi dengan list item lain */
     transition: color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .exp-item:hover h4 {
@@ -347,6 +360,8 @@
     transition: color 0.3s ease;
     position: relative;
     overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 .exp-item:hover p {
@@ -356,6 +371,7 @@
 /* Smooth scroll behavior for the page */
 html {
     scroll-behavior: smooth;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Responsive design */

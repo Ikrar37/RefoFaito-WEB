@@ -1,7 +1,9 @@
-/* home.css - optimasi performa, mengurangi animasi berat */
+/* home.css - dengan perbaikan untuk scrolling */
 html, body {
-    height: 100%;
+    /* Hapus height: 100% untuk memungkinkan konten scroll */
+    min-height: 100%;
     overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -13,6 +15,14 @@ body {
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
+    margin: 0; /* Pastikan tidak ada margin */
+}
+
+/* Wrapper konten utama */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 /* Background zoom animation - disederhanakan */
@@ -32,14 +42,15 @@ body {
 .hero {
     background-color: rgba(42, 91, 218, 0.45);
     color: white;
-    flex: 1;
+    /* Hapus flex: 1 agar tidak mengambil seluruh ruang tersisa */
     display: flex;
     align-items: flex-start;
     justify-content: center;
     text-align: center;
-    padding-top: 80px;
+    padding: 80px 0; /* Gunakan padding atas dan bawah yang sama */
     position: relative;
     overflow: hidden;
+    min-height: 400px; /* Tentukan tinggi minimal */
 }
 
 /* Wave effect at bottom - dipertahankan karena ringan */
@@ -82,6 +93,8 @@ body {
     text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
     position: relative;
     display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
 .hero h2::after {
@@ -100,16 +113,19 @@ body {
     font-style: italic;
     position: relative;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    font-weight: 500;
 }
 
 .hero p {
-    font-size: 19px;
+    font-size: 16px;
     line-height: 1.6;
     margin-bottom: 25px;
     text-align: center;
     color: #FFFFFF;
     text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
     position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 /* Button styles - transisi disederhanakan */
@@ -118,7 +134,7 @@ body {
     background: linear-gradient(135deg, #C7D9E5 0%, rgba(199, 217, 229, 0.8) 100%);
     color: #304258;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 9px;
     font-weight: 600;
     letter-spacing: 1px;
     margin-top: 0;
@@ -130,6 +146,7 @@ body {
     overflow: hidden;
     text-transform: uppercase;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .about-btn:hover {
@@ -188,6 +205,27 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Header and Nav font styles */
+header .logo h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+nav ul li a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+footer p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Pastikan footer selalu di bawah konten */
+footer {
+    margin-top: auto;
+    width: 100%;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
     body {
@@ -195,8 +233,9 @@ body {
     }
     
     .hero {
-        padding-top: 40px;
+        padding: 40px 0;
         align-items: center;
+        min-height: 350px; /* Reduced for mobile */
     }
     
     .hero-content {
@@ -302,5 +341,291 @@ body {
         font-size: 12px;
         padding: 6px 16px;
         border-radius: 18px;
+    }
+}
+
+/* TESTIMONIAL SECTION STYLES */
+/* Testimonials Section */
+.testimonials {
+    padding: 60px 0;
+    background-color: rgba(42, 91, 218, 0.25); /* Warna serupa dengan hero tapi lebih terang */
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.testimonials::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3); /* Garis putih transparan */
+}
+
+.testimonials h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 15px; /* Kurangi margin bawah judul */
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Menghapus pemisah lama di bawah judul testimonial */
+.testimonials h2::after {
+    display: none; /* Menghapus line gradient yang lama */
+}
+
+/* Membuat pemisah baru yang lebih menarik */
+.testimonials .separator {
+    position: relative;
+    height: 8px;
+    width: 120px;
+    margin: 0 auto 40px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.testimonials .separator::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    animation: slideSeparator 3s ease-in-out infinite;
+}
+
+@keyframes slideSeparator {
+    0%, 100% {
+        left: -100%;
+    }
+    50% {
+        left: 100%;
+    }
+}
+
+.testimonial-slider {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    min-height: 250px;
+}
+
+.testimonial-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.5s ease;
+    visibility: hidden;
+}
+
+.testimonial-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.testimonial-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: 0 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.quote-icon {
+    font-size: 60px;
+    color: #4a90e2;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    opacity: 0.2;
+    font-family: Georgia, serif;
+}
+
+.testimonial-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.author-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+    border: 2px solid #4a90e2;
+}
+
+.author-info h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #304258;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.author-info p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #777;
+    font-style: italic;
+}
+
+.testimonial-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonial-dots {
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #ffffff;
+}
+
+.testimonial-arrows {
+    display: flex;
+}
+
+.arrow {
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    color: #555;
+}
+
+.arrow:hover {
+    background-color: #ffffff;
+    color: #2a5bda;
+    border-color: #ffffff;
+}
+
+/* Tambahkan efek partikel ringan seperti di hero section */
+.testimonials::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: 0;
+    background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.2) 1px, transparent 2px),
+                      radial-gradient(circle at 20% 40%, rgba(255, 255, 255, 0.2) 1px, transparent 2px),
+                      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 1px, transparent 2px),
+                      radial-gradient(circle at 40% 50%, rgba(255, 255, 255, 0.2) 1px, transparent 2px),
+                      radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.2) 1px, transparent 2px),
+                      radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.2) 1px, transparent 2px),
+                      radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.2) 1px, transparent 2px),
+                      radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.2) 1px, transparent 2px),
+                      radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.2) 1px, transparent 2px);
+    background-size: 150px 150px;
+}
+
+/* Pastikan container testimonial mengikuti lebar container umum */
+.testimonials .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Mobile Responsive Testimonials */
+@media (max-width: 768px) {
+    .testimonials {
+        padding: 40px 0;
+    }
+    
+    .testimonials h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .testimonials .separator {
+        height: 6px;
+        width: 100px;
+        margin-bottom: 30px;
+    }
+    
+    .testimonial-content {
+        padding: 20px;
+        margin: 0 10px;
+    }
+    
+    .quote-icon {
+        font-size: 40px;
+    }
+    
+    .testimonial-content p {
+        font-size: 14px;
+    }
+    
+    .author-img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .author-info h4 {
+        font-size: 14px;
+    }
+    
+    .author-info p {
+        font-size: 12px;
     }
 }

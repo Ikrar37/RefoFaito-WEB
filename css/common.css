@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Voltaire', Arial, sans-serif; /* Default font diganti ke Voltaire */
+    font-family: 'Montserrat', sans-serif; /* Default font */
 }
 
 /* Header dengan animasi */
@@ -78,10 +78,10 @@ header .container {
 }
 
 .logo h1 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     color: #3c4e62;
     font-size: 28px;
-    font-weight: 700;
     margin: 0;
     transition: all 0.3s ease;
     position: relative;
@@ -133,7 +133,7 @@ nav ul {
 
 nav ul li {
     position: relative;
-    padding: 0 15px;
+    padding: 0 12px; /* Jarak antar tombol dikurangi dari 18px menjadi 12px */
     margin: 0;
     transition: transform 0.3s ease;
 }
@@ -161,17 +161,19 @@ nav ul li:not(:last-child)::after {
 nav ul li a {
     text-decoration: none;
     color: #3c4e62;
-    font-size: 14px;
-    font-family: 'Orbitron', sans-serif; /* Menambahkan font Orbitron */
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
     display: inline-block;
+    padding: 8px 10px; /* Padding horizontal dikurangi dari 12px menjadi 10px */
 }
 
 nav ul li a:after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: 0px;
     left: 50%;
     width: 0;
     height: 2px;
@@ -245,13 +247,15 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Voltaire', Arial, sans-serif; /* Memastikan footer juga menggunakan Voltaire */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 /* Untuk mengatasi konten tertutup header */
 body {
     padding-top: 70px; /* Hanya 70px untuk header, karena blue-bar dihapus */
-    font-family: 'Voltaire', Arial, sans-serif; /* Menegaskan penggunaan Voltaire di body */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 .logo a {
@@ -321,8 +325,8 @@ body {
     
     nav ul li a {
         display: block;
-        padding: 10px 15px;
-        font-size: 16px;
+        padding: 12px 15px; /* Diperbesar dari 10px 15px */
+        font-size: 18px; /* Diperbesar dari 16px */
         border-radius: 5px;
         background-color: rgba(255, 255, 255, 0.3);
         color: #3c4e62; /* Pastikan warna teks default tetap ada */
@@ -482,9 +486,32 @@ footer .sparkle:nth-child(4) {
 body[class*="portofolio"] .navbar-search-container,
 body.portofolio .navbar-search-container {
     display: flex;
+    align-items: center;
+    position: absolute;
+    right: 130px; /* Posisikan di sebelah kanan menu navigasi */
 }
 
-/* Styling tambahan untuk search box di navbar */
+/* Styling untuk search box di navbar */
+.search-box {
+    height: 36px; /* Sesuaikan dengan tinggi tombol navigasi */
+    padding: 8px 12px; /* Samakan dengan padding tombol nav */
+    border-radius: 5px;
+    border: 1px solid rgba(60, 78, 98, 0.3);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #3c4e62;
+    font-size: 16px; /* Samakan dengan font-size tombol nav */
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    width: 200px;
+}
+
+.search-box:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+/* Styling tambahan untuk search box di navbar pada tampilan mobile */
 @media (max-width: 768px) {
     .navbar-search-container {
         left: auto;
@@ -494,10 +521,29 @@ body.portofolio .navbar-search-container {
     
     .search-box {
         width: 160px;
+        height: 36px;
+        font-size: 16px;
+        padding: 8px 12px;
     }
     
     /* Saat menu mobile terbuka, sesuaikan posisi search agar tetap terlihat */
     #menu-toggle:checked ~ .navbar-search-container {
         z-index: 1000;
     }
+}
+
+/* Font family dasar untuk seluruh website */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+p, li, span, button, input, textarea {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Button text */
+button, .btn, a.btn, .about-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }

@@ -11,6 +11,7 @@
     padding-bottom: 88px;
     animation: fadeIn 0.5s ease-in-out; /* Animasi lebih cepat */
     min-height: calc(100vh - 110px);
+    font-family: 'Montserrat', sans-serif;
 }
 
 @keyframes fadeIn {
@@ -76,6 +77,8 @@
     position: relative;
     overflow: hidden;
     animation: gradientTitle 6s ease infinite;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
 .contact-title h2::before {
@@ -184,6 +187,8 @@
     line-height: 1.5;
     color: #304258;
     margin: 10px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 .contact-message p:first-child {
@@ -220,6 +225,8 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 }
 
 .contact-item::before {
@@ -339,6 +346,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body.loaded {
@@ -349,6 +357,12 @@ body.loaded {
 footer {
     position: relative;
     margin-top: auto; /* Ini akan mendorong footer ke bagian bawah */
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 @media (max-width: 768px) {
