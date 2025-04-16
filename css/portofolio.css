@@ -73,11 +73,12 @@
     transition: transform 1.5s;
 }
 
-/* Search container */
-.search-container {
+/* Navbar Search Container (Baru) */
+.navbar-search-container {
     position: absolute;
-    top: 20px;
-    right: 50px;
+    left: 200px; /* Posisi setelah logo */
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 10;
 }
 
@@ -180,8 +181,8 @@
 }
 
 .portfolio-image-container {
-    background-color: #55788a;
-    padding: 10px;
+    background-color: #b2cee0;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -190,7 +191,7 @@
 }
 
 .portfolio-item:hover .portfolio-image-container {
-    background-color: #476a7c;
+    background-color: #C7D9E5;
 }
 
 .portfolio-image-frame {
@@ -231,17 +232,11 @@
 
 /* Aturan untuk menyamakan ukuran gambar tanpa menutupi latar belakang */
 .portfolio-image-frame img {
-    width: auto;
-    height: auto;
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: all 0.5s ease;
     z-index: 0;
-    
-    /* Memastikan semua gambar memiliki dimensi yang sama */
-    min-width: 180px;
-    min-height: 180px;
 }
 
 .portfolio-item:hover .portfolio-image-frame img {
@@ -374,6 +369,10 @@
         max-width: 800px;
         gap: 100px 40px;
     }
+    
+    .navbar-search-container {
+        left: 160px;
+    }
 }
 
 @media (max-width: 900px) {
@@ -402,8 +401,8 @@
     }
     
     .portfolio-image-frame img {
-        min-width: 150px;
-        min-height: 150px;
+        width: 100%;
+        height: 100%;
     }
     
     .portfolio-info {
@@ -413,13 +412,26 @@
         justify-content: center;
     }
     
-    .search-container {
-        top: 20px;
-        right: 20px;
+    /* Pindahkan search box ke tengah di mobile */
+    .navbar-search-container {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        top: 70px; /* Di bawah header */
+        width: 80%;
+        max-width: 280px;
+        display: flex;
+        justify-content: center;
+        z-index: 5;
     }
     
     .search-box {
-        width: 160px;
+        width: 100%;
+    }
+    
+    /* Sesuaikan padding top untuk section agar tidak tertutup search box */
+    .portfolio-section {
+        padding-top: 70px;
     }
     
     /* Mobile menu */
@@ -485,4 +497,126 @@
         padding: 6px 15px;
         font-size: 12px;
     }
+}
+
+/* Tambahkan kode berikut ke portofolio.css */
+
+/* Styling untuk kotak pencarian di navbar */
+.nav-search {
+    display: none; /* Disembunyikan secara default */
+    margin-left: 15px; /* Beri ruang di sebelah kiri */
+    align-items: center;
+}
+
+/* Tampilkan search box hanya di halaman portofolio */
+body.portofolio .nav-search {
+    display: flex;
+}
+
+.nav-search .search-box {
+    width: 170px;
+    height: 35px;
+    margin: 0;
+    padding: 0 10px;
+}
+
+.nav-search .search-box input {
+    font-size: 13px;
+}
+
+/* Menghilangkan garis pemisah setelah contact */
+nav ul li:nth-last-child(2)::after {
+    display: none;
+}
+
+/* Responsive styling */
+@media (max-width: 900px) {
+    /* Pindahkan search box ke posisi terpisah di mobile */
+    .nav-search {
+        width: 100%;
+        justify-content: center;
+        margin: 15px 0 5px;
+        order: -1; /* Tampilkan di atas menu */
+    }
+    
+    .nav-search .search-box {
+        width: 80%;
+        max-width: 250px;
+    }
+}
+
+/* Override styling untuk menu navigation */
+nav ul li.nav-search::after {
+    display: none; /* Hapus pemisah setelah search box */
+}
+
+nav ul li.nav-search:hover {
+    transform: none; /* Tidak perlu efek hover pada search box */
+}
+
+/* Tambahkan kode berikut ke portofolio.css */
+
+/* Styling untuk kotak pencarian di navbar */
+.nav-search {
+    display: none; /* Disembunyikan secara default */
+    margin-left: 15px; /* Beri ruang di sebelah kiri */
+    align-items: center;
+}
+
+/* Tampilkan search box hanya di halaman portofolio */
+body.portofolio .nav-search {
+    display: flex;
+}
+
+/* Menyesuaikan ukuran agar sama dengan tombol navbar */
+.nav-search .search-box {
+    height: auto;
+    padding: 4px 10px;
+    margin: 0;
+    border-radius: 15px; /* Sedikit lebih bundar */
+}
+
+.nav-search .search-box i {
+    font-size: 10px;
+    margin-right: 4px;
+}
+
+.nav-search .search-box input {
+    font-size: 10px; /* Ukuran font sama dengan menu */
+    font-family: 'Orbitron', sans-serif; /* Agar sesuai dengan font menu */
+}
+
+/* Menghilangkan garis pemisah setelah contact */
+nav ul li:nth-last-child(2)::after {
+    display: none;
+}
+
+/* Responsive styling */
+@media (max-width: 900px) {
+    /* Pindahkan search box ke posisi terpisah di mobile */
+    .nav-search {
+        width: 100%;
+        justify-content: center;
+        margin: 15px 0 5px;
+        order: -1; /* Tampilkan di atas menu */
+    }
+    
+    .nav-search .search-box {
+        width: 80%;
+        max-width: 250px;
+        padding: 8px 15px; /* Lebih besar di mobile untuk kemudahan penggunaan */
+    }
+    
+    .nav-search .search-box i {
+        font-size: 14px;
+    }
+}
+
+/* Override styling untuk menu navigation */
+nav ul li.nav-search::after {
+    display: none; /* Hapus pemisah setelah search box */
+}
+
+nav ul li.nav-search:hover {
+    transform: none; /* Tidak perlu efek hover pada search box */
 }

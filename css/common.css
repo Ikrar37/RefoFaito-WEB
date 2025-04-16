@@ -470,3 +470,34 @@ footer .sparkle:nth-child(4) {
     75% { transform: scale(1); opacity: 1; }
     100% { transform: scale(0); opacity: 0; }
 }
+
+/* Tambahkan kode ini ke common.css untuk styling navbar-search yang hanya muncul di halaman portofolio */
+
+/* Sembunyikan navbar-search-container secara default */
+.navbar-search-container {
+    display: none;
+}
+
+/* Navbar Search Container khusus untuk halaman portofolio */
+body[class*="portofolio"] .navbar-search-container,
+body.portofolio .navbar-search-container {
+    display: flex;
+}
+
+/* Styling tambahan untuk search box di navbar */
+@media (max-width: 768px) {
+    .navbar-search-container {
+        left: auto;
+        right: 80px;
+        width: auto;
+    }
+    
+    .search-box {
+        width: 160px;
+    }
+    
+    /* Saat menu mobile terbuka, sesuaikan posisi search agar tetap terlihat */
+    #menu-toggle:checked ~ .navbar-search-container {
+        z-index: 1000;
+    }
+}

@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Voltaire&display=swap" rel="stylesheet">
 </head>
-<body class="loaded">
+<body class="loaded portofolio">
     <header>
         <div class="container">
             <div class="logo">
@@ -36,8 +36,16 @@
                 <ul>
                     <li><a href="index.html">home</a></li>
                     <li><a href="aboutme.html">about me</a></li>
-                    <li><a href="portofolio.html"class="active" style="color: #4a90e2; font-weight: bold;">portofolio</a></li>
+                    <li><a href="portofolio.html" class="active" style="color: #4a90e2; font-weight: bold;">portofolio</a></li>
                     <li><a href="contact.html">contact</a></li>
+                    
+                    <!-- Search Box di navbar setelah item contact -->
+                    <li class="nav-search">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="portfolio-search" placeholder="search">
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -47,14 +55,6 @@
 
     <!-- Portfolio Section -->
     <section class="portfolio-section">
-        <!-- Search Box dengan CSS-only functionality -->
-        <div class="search-container">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="portfolio-search" placeholder="search">
-            </div>
-        </div>
-        
         <div class="portfolio-title visible">
             <h2>Portofolio</h2>
         </div>
