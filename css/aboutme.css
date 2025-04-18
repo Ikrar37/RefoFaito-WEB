@@ -164,7 +164,7 @@
     line-height: 1.6; /* Sedikit lebih besar untuk keterbacaan */
     color: #304258;
     margin-bottom: 10px;
-    text-align: center; /* Ubah dari justify ke center */
+    text-align: left; /* Diubah dari center menjadi left */
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease;

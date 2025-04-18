@@ -15,6 +15,37 @@
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     </noscript>
+    <style>
+        /* Tambahan style untuk animasi ripple */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .ripple-effect {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* Tambahan animation untuk smooth hover */
+        .hover-tilt {
+            transition: transform 0.4s ease;
+        }
+        
+        .hover-tilt:hover {
+            transform: perspective(500px) rotateX(5deg) rotateY(5deg) scale(1.05);
+        }
+    </style>
 </head>
 <body class="loaded portofolio">
     <header>
@@ -59,7 +90,7 @@
     <!-- Portfolio Section -->
     <section class="portfolio-section">
         <div class="portfolio-title visible">
-            <h2>Portofolio</h2>
+            <h2 class="hover-tilt">Portofolio</h2>
         </div>
 
         <div class="portfolio-grid">
@@ -71,7 +102,7 @@
                     </div>
                 </div>
                 <div class="portfolio-info">
-                    <h3><span class="bold">Digital Marketing:</span><br> Postingan Instagram <br> Diskon 11.11</h3>
+                    <h3><span class="bold">Digital Marketing:</span><br> <span class="smaller-text">Postingan Instagram <br> Diskon 11.11</span></h3>
                 </div>
                 <div class="see-more-container">
                     <a href="digmar11.11.html" class="see-more">see more</a>
@@ -86,7 +117,7 @@
                     </div>
                 </div>
                 <div class="portfolio-info">
-                    <h3><span class="bold">Foto ala-ala (hunting):</span><br> Foto bukit di Bulu Dua, Barru <br> Perbatasan Kota Soppeng</h3>
+                    <h3><span class="bold">Foto:</span><br> <span class="smaller-text">Bukit di Bulu Dua, Barru <br> Perbatasan Kota Soppeng</span></h3>
                 </div>
                 <div class="see-more-container">
                     <a href="buludua.html" class="see-more">see more</a>
@@ -101,7 +132,7 @@
                     </div>
                 </div>
                 <div class="portfolio-info">
-                    <h3><span class="bold">Digital Marketing:</span><br>Postingan TikTok<br>Yang lagi trend</h3>
+                    <h3><span class="bold">Digital Marketing:</span><br> <span class="smaller-text">Postingan TikTok<br>Yang lagi trend</span></h3>
                 </div>
                 <div class="see-more-container">
                     <a href="digmartiktok.html" class="see-more">see more</a>
@@ -116,7 +147,7 @@
                     </div>
                 </div>
                 <div class="portfolio-info">
-                    <h3><span class="bold">Foto ala-ala (hunting):</span><br> Foto Tebing di Tebing <br> Apparalang, Bulukumba</h3>
+                    <h3><span class="bold">Foto:</span><br> <span class="smaller-text">Foto Tebing di Tebing <br> Apparalang, Bulukumba</span></h3>
                 </div>
                 <div class="see-more-container">
                     <a href="apparalang.html" class="see-more">see more</a>
@@ -131,7 +162,7 @@
                     </div>
                 </div>
                 <div class="portfolio-info">
-                    <h3><span class="bold">Foto ala-ala (hunting):</span><br> Keindahan Alam Celebes Canyon <br> Barru, Sulawesi Selatan </h3>
+                    <h3><span class="bold">Foto:</span><br> <span class="smaller-text">Keindahan Alam Celebes Canyon <br> Barru, Sulawesi Selatan</span></h3>
                 </div>
                 <div class="see-more-container">
                     <a href="celebes.html" class="see-more">see more</a>
@@ -146,7 +177,7 @@
                     </div>
                 </div>
                 <div class="portfolio-info">
-                    <h3><span class="bold">Tugas:</span><br>Pengantar Bisnis Digital<br>Desain dan protoype</h3>
+                    <h3><span class="bold">Tugas:</span><br><span class="smaller-text">Pengantar Bisnis Digital<br>Desain dan protoype</span></h3>
                 </div>
                 <div class="see-more-container">
                     <a href="waid.html" class="see-more">see more</a>
@@ -171,6 +202,7 @@
         const portfolioItems = document.querySelectorAll('.portfolio-item');
         const noResultsMsg = document.getElementById('no-results');
         
+        // Fungsi pencarian
         searchInput.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase().trim();
             let hasVisibleItems = false;
@@ -211,6 +243,30 @@
         
         searchInput.addEventListener('blur', function() {
             this.parentElement.classList.remove('focused');
+        });
+        
+        // Tambahkan efek ripple pada tombol see more
+        const addRippleEffect = (button) => {
+            button.addEventListener('click', function(e) {
+                const x = e.clientX - e.target.getBoundingClientRect().left;
+                const y = e.clientY - e.target.getBoundingClientRect().top;
+                
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        };
+        
+        // Terapkan efek ripple pada semua tombol see more
+        document.querySelectorAll('.see-more').forEach(button => {
+            addRippleEffect(button);
         });
     });
     </script>

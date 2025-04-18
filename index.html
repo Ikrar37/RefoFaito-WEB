@@ -3,23 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RefoFaito</title>
-    <meta name="description" content="Website portofolio Muhammad Ikrar di bidang Digital Marketing dan Foto Hunting">
+    <title>RefoFaito - Digital Marketing & Photography Portfolio</title>
+    <meta name="description" content="Website portofolio Muhammad Ikrar di bidang Digital Marketing dan Foto Hunting dengan tampilan profesional">
+    <meta name="keywords" content="digital marketing, photography, portofolio, Muhammad Ikrar">
+    <meta name="author" content="Muhammad Ikrar">
+    
+    <!-- Preload critical assets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="css/common.css" as="style">
+    <link rel="preload" href="css/home.css" as="style">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="image/apple-touch-icon.png">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts - optimized loading -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" rel="stylesheet">
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     </noscript>
+    
+    <!-- Font Awesome Icons - lightweight version -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="loaded other-page">
+<body class="animate-bg">
     <header>
         <div class="container">
             <div class="logo">
-                <a href="index.html">
+                <a href="index.html" aria-label="RefoFaito HomePage">
                     <h1>RefoFaito</h1>
                 </a>
             </div>
@@ -28,23 +44,22 @@
             <input type="checkbox" id="menu-toggle" style="display: none;">
             
             <!-- Hamburger menu dengan CSS-only toggle -->
-            <label for="menu-toggle" class="hamburger">
+            <label for="menu-toggle" class="hamburger" aria-label="Toggle Menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </label>
             
-            <nav>
+            <nav aria-label="Main Navigation">
                 <ul>
-                    <li><a href="index.html" class="active" style="color: #4a90e2; font-weight: bold;">home</a></li>
-                    <li><a href="aboutme.html">about me</a></li>
-                    <li><a href="portofolio.html">portofolio</a></li>
-                    <li><a href="contact.html">contact</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="aboutme.html">About Me</a></li>
+                    <li><a href="portofolio.html">Portofolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <div class="blue-bar"></div>
 
     <main class="main-content">
         <section class="hero">
@@ -55,7 +70,39 @@
                 <h2><span class="greeting">Hello! I'm</span> Muhammad Ikrar</h2>
                 <p>Website ini merupakan portofolio pribadi yang mencerminkan minat saya di bidang Digital Marketing dan 
                     berisi galeri visual dari berbagai perjalanan yang saya dokumentasikan.</p>
-                <a href="aboutme.html" class="about-btn">about me</a>
+                <a href="aboutme.html" class="about-btn">
+                    <i class="fas fa-user-circle mr-2"></i> About Me
+                </a>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Digital Marketing</h3>
+                        <p>Strategi digital sederhana untuk bantu bisnis lebih terlihat online.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>Photography</h3>
+                        <p>Foto estetik dari momen perjalanan untuk kebutuhan personal atau konten.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Junior Web Development</h3>
+                        <p>Pembuatan website responsif dengan desain modern dan pengalaman pengguna yang optimal.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -71,7 +118,7 @@
                             <p>Pas lihat portofolio ini, saya langsung kebayang gimana feed Instagram bisnis saya bisa ditingkatkan. Desain konten
                                 promo 11.11-nya simple tapi eye-catching. Mungkin ke depannya bisa lebih variasi aja gaya kontennya.</p>
                             <div class="testimonial-author">
-                                <img src="/image/Renditester.jpg" alt="Profile" class="author-img">
+                                <img src="image/Renditester.jpg" alt="Rendi - Pelaku UMKM Kuliner" class="author-img">
                                 <div class="author-info">
                                     <h4>Rendi</h4>
                                     <p>Pelaku UMKM Kuliner</p>
@@ -82,10 +129,10 @@
                     <div class="testimonial-slide">
                         <div class="testimonial-content">
                             <div class="quote-icon">"</div>
-                            <p>Foto-fotonya bagus, terutama yang di tebing dan sungai. Warna airnya keliatan banget fresh-nya, editannya pas. 
+                            <p>Foto-fotonya bagus, terutama yang di tebing dan laut. Warna airnya keliatan banget fresh-nya, editannya pas. 
                                 Kalau bisa ditambahin sedikit cerita di balik hunting-nya, pasti makin hidup.</p>
                             <div class="testimonial-author">
-                                <img src="/image/Ayutester.jpg" alt="Profile" class="author-img">
+                                <img src="image/Ayutester.jpg" alt="Ayu - Traveller & Blogger" class="author-img">
                                 <div class="author-info">
                                     <h4>Ayu</h4>
                                     <p>Traveller & Blogger</p>
@@ -99,7 +146,7 @@
                             <p>Web-nya clean dan rapi, gampang dilihat satu per satu. Konten TikTok dan IG marketing-nya udah lumayan oke, meski 
                                 masih bisa dimatengin dari sisi copywriting-nya. Tapi udah kelihatan ngerti tren.</p>
                             <div class="testimonial-author">
-                                <img src="/image/Tyotester.jpg" alt="Profile" class="author-img">
+                                <img src="image/Tyotester.jpg" alt="Tyo - Mahasiswa & Content Editor" class="author-img">
                                 <div class="author-info">
                                     <h4>Tyo</h4>
                                     <p>Mahasiswa & Content Editor</p>
@@ -110,13 +157,17 @@
                 </div>
                 <div class="testimonial-controls">
                     <div class="testimonial-dots">
-                        <span class="dot active" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot active" onclick="currentSlide(1)" aria-label="Testimonial 1"></span>
+                        <span class="dot" onclick="currentSlide(2)" aria-label="Testimonial 2"></span>
+                        <span class="dot" onclick="currentSlide(3)" aria-label="Testimonial 3"></span>
                     </div>
                     <div class="testimonial-arrows">
-                        <button class="arrow prev" onclick="changeSlide(-1)">&#10094;</button>
-                        <button class="arrow next" onclick="changeSlide(1)">&#10095;</button>
+                        <button class="arrow prev" onclick="changeSlide(-1)" aria-label="Previous Testimonial">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="arrow next" onclick="changeSlide(1)" aria-label="Next Testimonial">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -125,38 +176,86 @@
 
     <footer>
         <div class="container">
-            <p>&copy;2025 RefoFaito. All rights reserved.</p>
+            <p>&copy; 2025 RefoFaito. All rights reserved.</p>
+            <!-- Added sparkle elements -->
+            <span class="sparkle"></span>
+            <span class="sparkle"></span>
+            <span class="sparkle"></span>
+            <span class="sparkle"></span>
         </div>
     </footer>
 
-    <!-- JavaScript untuk testimonial -->
+    <!-- JavaScript for improved functionality -->
     <script>
-        // Kode JavaScript untuk testimonial
+        // Buat website lebih interaktif dengan JS
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tambahkan class loaded ke body untuk animasi
+            document.body.classList.add('loaded');
+            
+            // Inisialisasi slider testimonial
+            initTestimonialSlider();
+            
+            // Tambahkan event listener untuk animasi header saat scroll
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+            
+            // Event listener untuk mobile navigation
+            const menuToggle = document.getElementById('menu-toggle');
+            const nav = document.querySelector('nav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            menuToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    nav.classList.add('active');
+                    hamburger.classList.add('active');
+                } else {
+                    nav.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        });
+        
+        // Testimonial Slider with improved functionality
         let slideIndex = 1;
         let slideInterval;
-
-        // Inisialisasi slide saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function() {
+        
+        function initTestimonialSlider() {
             const slides = document.getElementsByClassName("testimonial-slide");
             if (slides.length > 0) {
                 showSlide(slideIndex);
                 startAutoSlide();
+                
+                // Event listeners for testimonial interaction
+                const testimonialSection = document.querySelector('.testimonials');
+                
+                if (testimonialSection) {
+                    testimonialSection.addEventListener('mouseenter', function() {
+                        clearInterval(slideInterval);
+                    });
+                    
+                    testimonialSection.addEventListener('mouseleave', function() {
+                        startAutoSlide();
+                    });
+                }
             }
-        });
+        }
 
-        // Fungsi untuk mengubah slide
         function changeSlide(n) {
             showSlide(slideIndex += n);
             resetAutoSlide();
         }
 
-        // Fungsi untuk menampilkan slide tertentu
         function currentSlide(n) {
             showSlide(slideIndex = n);
             resetAutoSlide();
         }
 
-        // Fungsi utama untuk menampilkan slide
         function showSlide(n) {
             let i;
             let slides = document.getElementsByClassName("testimonial-slide");
@@ -164,16 +263,30 @@
             
             if (slides.length === 0 || dots.length === 0) return;
             
+            // Add previous class to current slide for exit animation
+            for (i = 0; i < slides.length; i++) {
+                if (slides[i].classList.contains('active')) {
+                    slides[i].classList.remove('active');
+                    slides[i].classList.add('prev');
+                    
+                    // Remove 'prev' class after animation completes
+                    setTimeout(function() {
+                        for (let j = 0; j < slides.length; j++) {
+                            if (slides[j].classList.contains('prev')) {
+                                slides[j].classList.remove('prev');
+                            }
+                        }
+                    }, 600);
+                    
+                    break;
+                }
+            }
+            
             // Reset ke slide pertama jika melebihi jumlah slide
             if (n > slides.length) {slideIndex = 1}
             
             // Kembali ke slide terakhir jika kurang dari 1
             if (n < 1) {slideIndex = slides.length}
-            
-            // Sembunyikan semua slide
-            for (i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
             
             // Deaktifkan semua dots
             for (i = 0; i < dots.length; i++) {
@@ -187,33 +300,16 @@
             dots[slideIndex-1].classList.add("active");
         }
 
-        // Fungsi untuk memulai slide otomatis
         function startAutoSlide() {
             slideInterval = setInterval(function() {
                 changeSlide(1);
             }, 5000); // Ganti slide setiap 5 detik
         }
 
-        // Reset timer untuk slide otomatis
         function resetAutoSlide() {
             clearInterval(slideInterval);
             startAutoSlide();
         }
-
-        // Hentikan slide otomatis saat user mengarahkan kursor ke testimonial
-        document.addEventListener('DOMContentLoaded', function() {
-            const testimonialSection = document.querySelector('.testimonials');
-            
-            if (testimonialSection) {
-                testimonialSection.addEventListener('mouseenter', function() {
-                    clearInterval(slideInterval);
-                });
-                
-                testimonialSection.addEventListener('mouseleave', function() {
-                    startAutoSlide();
-                });
-            }
-        });
     </script>
 </body>
 </html>

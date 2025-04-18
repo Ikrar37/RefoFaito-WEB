@@ -8,7 +8,6 @@
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    animation: fadeIn 0.8s ease-in-out;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -18,6 +17,7 @@
 }
 
 /* Background image dengan parallax efek */
+/* Ubah bagian ini */
 .hunting-section::before {
     content: "";
     position: absolute;
@@ -30,19 +30,10 @@
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    z-index: -1; /* Menempatkan di belakang konten */
-    animation: gradualBlur 1.5s ease-out;
-}
-
-@keyframes gradualBlur {
-    from { 
-        filter: blur(10px); 
-        transform: scale(1.05); 
-    }
-    to { 
-        filter: blur(0); 
-        transform: scale(1); 
-    }
+    z-index: -1;
+    /* Hapus animasi dan tambahkan filter: blur(0) */
+    filter: blur(0);
+    transform: scale(1);
 }
 
 .hunting-title {
@@ -119,17 +110,6 @@
     margin: 0 auto;
     animation: fadeInUp 1s ease-out 0.2s;
     animation-fill-mode: both;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .hunting-image img {

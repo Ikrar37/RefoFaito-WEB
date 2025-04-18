@@ -1,38 +1,45 @@
-/* Styles khusus untuk halaman Portfolio - versi tanpa animasi */
+/* Styles khusus untuk halaman Portfolio - dengan animasi yang lebih halus */
 .portfolio-section {
     flex: 1;
     padding: 50px 0;
-    background-color: #dae6f1;
-    position: relative;
+    background-color: #ecf2f7; /* Warna dasar sebagai fallback */
+    background-image: linear-gradient(rgba(236, 242, 247, 0.92), rgba(236, 242, 247, 0.92)), url('../image/tes.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
     min-height: calc(100vh - 110px);
     font-family: 'Montserrat', sans-serif;
+    animation: simpleFadeIn 0.8s ease-in-out; /* Animasi sederhana tanpa kedipan */
 }
 
-/* Background fixed sederhana */
-.portfolio-section::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(rgba(236, 242, 247, 0.9), rgba(236, 242, 247, 0.9)), url('../image/tes.jpg');
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
+@keyframes simpleFadeIn {
+    from { opacity: 0.95; }
+    to { opacity: 1; }
 }
 
-/* Portfolio Title */
+/* Portfolio Title dengan animasi slide down yang halus */
 .portfolio-title {
     text-align: center;
     margin-bottom: 30px;
     width: 100%;
     position: relative;
     padding-top: 20px;
+    animation: simpleSlideDown 0.7s ease-out;
+}
+
+@keyframes simpleSlideDown {
+    from { 
+        transform: translateY(-20px);
+        opacity: 0.8;
+    }
+    to { 
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .portfolio-title.visible {
@@ -76,7 +83,7 @@
     transition: transform 1.5s;
 }
 
-/* Navbar Search Container (Baru) */
+/* Navbar Search Container */
 .navbar-search-container {
     position: absolute;
     left: 200px; /* Posisi setelah logo */
@@ -136,16 +143,27 @@
     opacity: 0.5;
 }
 
-/* Portfolio Grid */
+/* Portfolio Grid dengan animasi fadeInUp yang halus */
 .portfolio-grid {
     width: 90%;
     max-width: 1200px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 100px 30px;
+    gap: 120px 50px; /* Dari 100px 30px menjadi 120px 50px */
     padding: 50px 0;
     min-height: 300px;
     position: relative;
+    animation: simpleFadeUp 0.8s ease-out;
+}
+@keyframes simpleFadeUp {
+    from {
+        opacity: 0.9;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* No results message */
@@ -162,7 +180,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Portfolio Items */
+/* Portfolio Items - sudah ada secara default dan akan muncul langsung */
 .portfolio-item {
     display: flex;
     flex-direction: column;
@@ -171,9 +189,9 @@
     background-color: #f5f7fa;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    opacity: 1;
-    transform: translateY(0);
+    transition: all 0.4s ease;
+    opacity: 1; /* Pastikan opacity 1 agar tidak berkedip */
+    transform: translateY(0); /* Reset transform */
 }
 
 .portfolio-item.visible {
@@ -295,12 +313,18 @@
     width: 100%;
 }
 
+.portfolio-info h3 .smaller-text {
+    font-size: 15px; /* Ukuran font lebih kecil, bisa disesuaikan */
+    display: inline-block;
+    font-weight: normal;
+}
+
 .see-more-container {
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 0 0 15px;
-    margin-top: -5px;
+    margin-top: -10px;
     background-color: #e6eaef;
     transition: background-color 0.3s ease;
 }
@@ -312,16 +336,17 @@
 .see-more {
     background-color: #55788a;
     color: white;
-    padding: 8px 20px;
-    border-radius: 20px;
+    padding: 6px 16px;
+    border-radius: 18px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     z-index: 1;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+    margin-top: 0px; /* Tambahkan ini untuk mengatur jarak dengan elemen di atasnya */
 }
 
 .see-more::before {
@@ -345,6 +370,15 @@
 
 .see-more:hover::before {
     width: 100%;
+}
+
+/* Hover-tilt effect yang halus */
+.hover-tilt {
+    transition: transform 0.4s ease;
+}
+
+.hover-tilt:hover {
+    transform: perspective(500px) rotateX(5deg) rotateY(5deg) scale(1.05);
 }
 
 /* Hamburger menu styling */
@@ -513,6 +547,8 @@
     display: none; /* Disembunyikan secara default */
     margin-left: 15px; /* Beri ruang di sebelah kiri */
     align-items: center;
+    animation: fadeIn 0.8s ease-in-out 0.5s;
+    animation-fill-mode: both;
 }
 
 /* Tampilkan search box hanya di halaman portofolio */
@@ -599,4 +635,22 @@ nav ul li.nav-search:hover {
     .nav-search .search-box i {
         font-size: 14px;
     }
+}
+
+/* Animasi fade-in sederhana */
+@keyframes simpleFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Animasi untuk hero content saja */
+.loaded .hero-content {
+    opacity: 0;
+    animation: simpleFadeIn 2s ease-out forwards;
+}
+
+/* Animasi sederhana untuk header */
+.loaded header {
+    opacity: 0;
+    animation: simpleFadeIn 0.8s ease-out forwards;
 }
