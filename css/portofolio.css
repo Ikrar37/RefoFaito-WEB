@@ -143,18 +143,17 @@
     opacity: 0.5;
 }
 
-/* Portfolio Grid dengan animasi fadeInUp yang halus */
 .portfolio-grid {
     width: 90%;
     max-width: 1200px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 120px 50px; /* Dari 100px 30px menjadi 120px 50px */
-    padding: 50px 0;
-    min-height: 300px;
+    gap: 60px 50px; 
+    padding: 40px 0 5px;
     position: relative;
     animation: simpleFadeUp 0.8s ease-out;
 }
+
 @keyframes simpleFadeUp {
     from {
         opacity: 0.9;
@@ -222,7 +221,7 @@
     background-color: #C7D9E5;
     border-radius: 10px;
     overflow: hidden;
-    width: 90%;
+    width: 95%;
     aspect-ratio: 1/1;
     display: flex;
     justify-content: center;
@@ -323,8 +322,9 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 0 0 15px;
-    margin-top: -10px;
+    align-items: center; /* Menambahkan align-items center */
+    padding: 8px 0 15px; /* Tambahkan padding atas */
+    margin-top: -18px;
     background-color: #e6eaef;
     transition: background-color 0.3s ease;
 }
@@ -336,8 +336,8 @@
 .see-more {
     background-color: #55788a;
     color: white;
-    padding: 6px 16px;
-    border-radius: 18px;
+    padding: 8px 20px; 
+    border-radius: 50px; 
     text-decoration: none;
     font-size: 13px;
     transition: all 0.3s ease;
@@ -346,7 +346,10 @@
     z-index: 1;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    margin-top: 0px; /* Tambahkan ini untuk mengatur jarak dengan elemen di atasnya */
+    margin: 0 auto; 
+    display: inline-block; 
+    text-align: center; 
+    line-height: 1.2;
 }
 
 .see-more::before {

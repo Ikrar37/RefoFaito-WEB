@@ -86,8 +86,8 @@
   
   .hero-content {
     max-width: 900px;
-    margin: 0 20px;
-    padding: 50px 60px;
+    margin: 0 15px;
+    padding: 35px 70px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     backdrop-filter: blur(10px);
@@ -177,7 +177,7 @@
   }
   
   .hero p {
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.8;
     margin-bottom: 20px;
     text-align: center;
@@ -197,12 +197,12 @@
     background: linear-gradient(45deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 100%);
     color: var(--primary-dark);
     text-decoration: none;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 1px;
     margin-top: 10px;
     transition: all var(--transition-fast);
-    padding: 14px 34px;
+    padding: 10px 22px;
     border-radius: 50px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -355,70 +355,114 @@
     }
   }
   
-  .testimonial-slider {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    overflow: hidden;
-    min-height: 260px;
-    z-index: 1;
-    animation: fadeInUp 0.8s var(--transition-slow) 0.4s both;
-  }
-  
-  .testimonial-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    transform: translateX(60px) scale(0.92);
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    visibility: hidden;
-    z-index: 1;
-  }
-  
-  .testimonial-slide.active {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-    visibility: visible;
-    z-index: 5;
-  }
-  
-  .testimonial-slide.prev {
-    opacity: 0;
-    transform: translateX(-60px) scale(0.92);
-    visibility: hidden;
-    z-index: 0;
-  }
-  
-  .testimonial-content {
-    background-color: var(--card-bg);
-    border-radius: 16px;
-    padding: 35px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-    position: relative;
-    margin: 0 20px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(5px);
-    transition: transform var(--transition-medium), 
-                box-shadow var(--transition-medium);
-  }
-  
-  .testimonial-content:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-  }
-  
-  .quote-icon {
-    font-size: 80px;
-    color: var(--primary-color);
-    position: absolute;
-    top: 8px;
-    left: 18px;
-    opacity: 0.1;
-    font-family: Georgia, serif;
-    animation: quoteGlow 4s ease-in-out infinite;
-  }
+  /* Perbaikan Animasi Slide di Section Testimonial */
+
+.testimonial-slider {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  min-height: 260px;
+  z-index: 1;
+  animation: fadeInUp 0.8s var(--transition-slow) 0.4s both;
+}
+
+.testimonial-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  /* Ubah transform untuk menghindari blinking */
+  transform: translateX(30px);
+  /* Ubah transition agar lebih smooth */
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s ease;
+  visibility: hidden;
+  z-index: 1;
+  /* Menambahkan backface-visibility untuk mencegah glitch */
+  backface-visibility: hidden;
+  /* Menambahkan will-change untuk mengoptimalkan rendering */
+  will-change: opacity, transform;
+}
+
+.testimonial-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  visibility: visible;
+  z-index: 5;
+  /* Menambahkan position relative untuk memastikan layer benar */
+  position: relative;
+}
+
+.testimonial-slide.prev {
+  opacity: 0;
+  transform: translateX(-30px);
+  visibility: hidden;
+  z-index: 0;
+  /* Menambahkan pointer-events none saat tidak aktif */
+  pointer-events: none;
+}
+
+/* Tambahkan class next untuk animasi yang lebih smooth */
+.testimonial-slide.next {
+  opacity: 0;
+  transform: translateX(30px);
+  visibility: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Menambahkan perbaikan untuk animasi content di dalam slide */
+.testimonial-content {
+  background-color: var(--card-bg);
+  border-radius: 5px;
+  padding: 35px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  position: relative;
+  margin: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  transition: box-shadow var(--transition-medium);
+  /* Perbaikan untuk mencegah blinking */
+  transform: translateZ(0);
+}
+
+/* Memperbaiki animasi content fade-in agar tidak bertabrakan */
+.testimonial-content p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
+  text-align: justify; /* Membuat teks rata kiri-kanan */
+  padding-left: 20px;
+  padding-right: 20px; /* Tambahkan padding di kanan */
+  text-indent: 15px;
+}
+
+/* Ubah animasi untuk testimonial author */
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Pastikan selalu rata kiri */
+  margin-top: 20px;
+  padding-left: 20px; /* Sejajarkan dengan paragraf */
+}
+
+/* Update quote-icon untuk memberikan jarak dengan teks */
+.quote-icon {
+  font-size: 80px;
+  color: var(--primary-color);
+  position: absolute;
+  top: 8px;
+  left: 18px;
+  opacity: 0.1;
+  font-family: Georgia, serif;
+  animation: quoteGlow 4s ease-in-out infinite;
+  z-index: 0; /* Memastikan icon berada di belakang teks */
+}
   
   @keyframes quoteGlow {
     0%, 100% {
@@ -470,13 +514,18 @@
     object-fit: cover;
     border: 3px solid var(--primary-color);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-    transition: all var(--transition-medium);
+    /* Menghapus transition */
   }
   
   .testimonial-content:hover .author-img {
-    transform: scale(1.1) rotate(5deg);
-    border-color: var(--accent-color);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 198, 255, 0.4);
+    /* Menghapus transformasi dan perubahan saat hover */
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .author-info {
+    display: flex;
+    flex-direction: column;
   }
   
   .author-info h4 {
@@ -484,6 +533,8 @@
     font-size: 18px;
     color: var(--secondary-color);
     font-weight: 600;
+    padding: 0; /* Pastikan tidak ada padding */
+    text-align: left;
   }
   
   .author-info p {
@@ -491,6 +542,9 @@
     font-size: 14px;
     color: var(--text-muted);
     font-style: italic;
+    padding: 0; /* Pastikan tidak ada padding */
+    text-align: left;
+    text-indent: 0; /* Sangat penting - hilangkan text-indent */
     animation: none;
     opacity: 1;
     transform: none;
@@ -501,7 +555,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 30px;
-    margin-bottom: 30px; /* Tambahkan margin bawah */
+    margin-bottom: 30px;
     position: relative;
     z-index: 2;
     animation: fadeInUp 0.8s var(--transition-slow) 0.6s both;
@@ -521,7 +575,6 @@
     margin: 0 6px;
     cursor: pointer;
     transition: all var(--transition-fast);
-    transform: scale(1);
     position: relative;
   }
   
@@ -541,7 +594,7 @@
   }
   
   .dot:hover {
-    transform: scale(1.3);
+    /* Menghapus efek transform scale */
     background-color: rgba(255, 255, 255, 0.7);
   }
   
@@ -553,7 +606,7 @@
   .dot.active {
     background-color: var(--accent-color);
     box-shadow: 0 0 12px rgba(0, 198, 255, 0.8);
-    transform: scale(1.3);
+    /* Menghapus efek transform scale */
   }
   
   .dot.active::after {
@@ -588,7 +641,7 @@
     background-color: var(--accent-color);
     color: #ffffff;
     border-color: var(--accent-color);
-    transform: scale(1.1);
+    /* Menghapus transform scale */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 198, 255, 0.5);
   }
   
@@ -816,10 +869,10 @@
     }
 }
 
-/* CSS untuk section layanan baru - tambahkan ke file home.css */
 .services {
-  padding: 80px 0;
-  background-color: #f8f9fa;
+  padding: 80px 0 30px; /* Kurangi padding-bottom */
+  margin-bottom: -20px; /* Tambahkan margin-bottom negatif moderat */
+  background-color: rgba(248, 249, 250, 0.97); /* Nilai alpha 0.95 untuk transparansi sangat sedikit */
   position: relative;
 }
 
@@ -944,4 +997,296 @@
   .service-card {
     padding: 30px 25px;
   }
+}
+
+/* SKILL BADGES SECTION */
+.skills-section {
+  padding: 80px 0 60px; /* Tambahkan padding-top yang lebih besar */
+  margin-top: -20px; /* Tambahkan margin-top negatif moderat */
+  background-color: rgba(248, 249, 250, 0.97);
+  position: relative;
+  overflow: hidden;
+}
+
+.skills-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 0h1v1H9V0zm11 0h1v1h-1V0zm0 11h1v1h-1v-1zm-11 0h1v1H9v-1zm0 11h1v1H9v-1zm11 0h1v1h-1v-1zm-11 11h1v1H9v-1zm11 0h1v1h-1v-1zm0 11h1v1h-1v-1zm-11 0h1v1H9v-1z' fill='%233366ff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.skills-title {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: -30px; /* Nilai negatif yang moderat */
+  position: relative;
+}
+
+.skills-title h2 {
+  font-size: 36px;
+  color: var(--text-dark);
+  font-weight: 700;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+.skills-title h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+.skills-container {
+  display: flex;
+  justify-content: flex-start; /* Ubah dari center agar bergerak dari kiri */
+  flex-wrap: nowrap;
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 0;
+  overflow-x: auto; /* Kembalikan overflow agar bisa di-scroll manual */
+  cursor: grab; /* Tambahkan cursor grab untuk indikasi bisa di-drag */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Sembunyikan scrollbar Firefox */
+  -ms-overflow-style: none; /* Sembunyikan scrollbar IE dan Edge */
+  position: relative;
+  /* Konfigurasi untuk animasi */
+  animation: scrollSkills 20s linear infinite; /* Animasi 20 detik bergerak horizontal */
+  animation-play-state: running;
+}
+
+.skills-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.skills-container::-webkit-scrollbar-thumb {
+  background-color: rgba(51, 102, 255, 0.2);
+  border-radius: 4px;
+}
+
+.skill-badge {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInSkill 0.8s forwards;
+  animation-delay: calc(var(--skill-index) * 0.1s);
+}
+
+@keyframes fadeInSkill {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skill-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  opacity: 0.07;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.skill-badge:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(var(--hover-glow), 0.3);
+}
+
+.skill-badge:hover::before {
+  opacity: 0.15;
+}
+
+.skill-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  overflow: hidden; 
+}
+
+.skill-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Pastikan gambar tampil penuh tanpa terpotong */
+  transition: all 0.4s ease;
+}
+
+.skill-badge:hover .skill-icon img {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.skill-badge:hover .skill-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.skill-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+}
+
+.skill-badge:hover .skill-name {
+  transform: translateX(5px);
+  color: var(--icon-color);
+}
+
+/* Specific styles for each skill */
+.skill-html {
+  --gradient-start: #E44D26;
+  --gradient-end: #F16529;
+  --icon-color: #E44D26;
+  --hover-glow: 228, 77, 38;
+}
+
+.skill-css {
+  --gradient-start: #264DE4;
+  --gradient-end: #2965F1;
+  --icon-color: #264DE4;
+  --hover-glow: 38, 77, 228;
+}
+
+.skill-figma {
+  --gradient-start: #F24E1E;
+  --gradient-end: #FF7262;
+  --icon-color: #F24E1E;
+  --hover-glow: 242, 78, 30;
+}
+
+.skill-canva {
+  --gradient-start: #00C4CC;
+  --gradient-end: #7D2AE8;
+  --icon-color: #00C4CC;
+  --hover-glow: 0, 196, 204;
+}
+
+.skill-lightroom {
+  --gradient-start: #31A8FF;
+  --gradient-end: #2B67DE;
+  --icon-color: #31A8FF;
+  --hover-glow: 49, 168, 255;
+}
+
+.skill-capcut {
+  --gradient-start: #00F2EA;
+  --gradient-end: #FF3E3E;
+  --icon-color: #00F2EA;
+  --hover-glow: 0, 242, 234;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .skills-section {
+    padding: 40px 0;
+  }
+  
+  .skills-title h2 {
+    font-size: 28px;
+  }
+  
+  .skills-container {
+    gap: 15px;
+  }
+  
+  .skill-badge {
+    padding: 12px 20px;
+  }
+  
+  .skill-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .skill-name {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-container {
+    flex-direction: column;
+    align-items: center;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .skill-badge {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Hanya modifikasi untuk menghilangkan scrollbar */
+.skills-container {
+  /* Pertahankan semua property yang sudah ada */
+  overflow-x: hidden; /* Ubah dari auto ke hidden untuk menghilangkan scrollbar */
+}
+
+/* Hilangkan styling scrollbar */
+.skills-container::-webkit-scrollbar {
+  display: none;
+}
+
+.skills-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE dan Edge */
+}
+
+.services-title {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: -50px; /* Menambahkan margin negatif untuk mendorong judul ke atas */
+  position: relative;
+}
+.services-title h2 {
+  font-size: 36px;
+  color: var(--text-dark);
+  font-weight: 700;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+.services-title h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  transform: translateX(-50%);
+  border-radius: 3px;
 }

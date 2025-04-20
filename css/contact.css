@@ -2,13 +2,13 @@
 .contact-section {
     background-color: rgba(230, 240, 250, 0.85);
     flex: 1;
-    padding: 30px 0;
+    padding: 50px 0;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    padding-bottom: 88px;
+    padding-bottom: 40px;
     min-height: calc(100vh - 110px);
     font-family: 'Montserrat', sans-serif;
 }
@@ -26,6 +26,7 @@
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    opacity: 0.70; /* Menambahkan opacity, nilai bisa disesuaikan */
     z-index: -1;
     animation: parallaxBg 30s ease-in-out infinite alternate;
 }
@@ -41,7 +42,7 @@
 
 .contact-title {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     position: relative;
     animation: slideDown 0.5s ease-out; /* Animasi lebih cepat */
 }
@@ -166,7 +167,7 @@
 }
 
 .contact-message p {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.5;
     color: #304258;
     margin: 10px 0;
@@ -178,6 +179,11 @@
     font-weight: 500;
     position: relative;
     display: inline-block;
+}
+
+.contact-message p:last-child {
+    font-size: 18px; /* Ukuran font lebih kecil untuk paragraf kedua */
+    color: #455a74; /* Warna sedikit lebih terang */
 }
 
 .contact-info {
@@ -471,7 +477,8 @@ footer p {
     background-color: rgba(224, 232, 240, 0.9);
     border-radius: 15px;
     padding: 25px 32px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    margin-top: 60px; /* Meningkatkan dari 15px */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     animation: fadeInUp 0.5s ease-out;
@@ -734,7 +741,7 @@ footer p {
     gap: 15px;
     width: auto;
     max-width: 320px;
-    margin-bottom: 15px; /* Menambahkan margin untuk memberi jarak */
+    margin-bottom: 50px; /* Menambahkan margin untuk memberi jarak */
 }
 
 /* Alternatif, bisa juga menambahkan margin-top pada feedback-form */
