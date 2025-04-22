@@ -657,3 +657,161 @@ nav ul li.nav-search:hover {
     opacity: 0;
     animation: simpleFadeIn 0.8s ease-out forwards;
 }
+
+/* Tambahkan kode CSS ini di bagian bawah file portofolio.css */
+
+/* Header controls untuk mobile */
+.header-controls {
+    display: none;
+  }
+  
+  /* Mobile search styling */
+  .mobile-search {
+    display: none;
+  }
+  
+  /* Untuk tampilan mobile */
+  @media (max-width: 768px) {
+    /* Ubah layout header di mobile */
+    header .container {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    /* Logo tetap di kiri */
+    .logo {
+      flex: 1;
+    }
+    
+    /* Container untuk search dan hamburger menu */
+    .header-controls {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    
+    /* Mobile search styling */
+    .mobile-search {
+      display: flex;
+      margin-right: 15px;
+    }
+    
+    .mobile-search .search-box {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      background-color: #55788a;
+    }
+    
+    .mobile-search .search-box.expanded {
+      width: 150px;
+      border-radius: 20px;
+      padding: 0 10px;
+    }
+    
+    .mobile-search .search-box i {
+      margin-right: 0;
+      font-size: 16px;
+      color: white;
+    }
+    
+    .mobile-search .search-box.expanded i {
+      margin-right: 8px;
+    }
+    
+    .mobile-search .search-box input {
+      width: 0;
+      padding: 0;
+      transition: all 0.3s ease;
+      background: transparent;
+      border: none;
+      color: white;
+      outline: none;
+    }
+    
+    .mobile-search .search-box input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .mobile-search .search-box.expanded input {
+      width: 100%;
+    }
+    
+    /* Sembunyikan search di nav untuk tampilan mobile */
+    nav ul li.nav-search {
+      display: none;
+    }
+    
+    /* Hamburger menu animasi yang benar */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      cursor: pointer;
+      z-index: 1000;
+      position: relative;
+    }
+    
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: #304258;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Animasi hamburger menu menjadi X saat active */
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+      background-color: #2A5BDA;
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+      background-color: #2A5BDA;
+    }
+    
+    /* Navigation menu styling */
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100vh;
+      background-color: white;
+      transition: right 0.3s ease;
+      z-index: 99;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav.active {
+      right: 0;
+    }
+    
+    nav ul {
+      flex-direction: column;
+      padding-top: 80px;
+      height: 100%;
+    }
+    
+    nav ul li {
+      margin: 10px 0;
+      width: 100%;
+      text-align: center;
+    }
+  }

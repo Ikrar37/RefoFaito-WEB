@@ -56,15 +56,23 @@
                 </a>
             </div>
             
-            <!-- Menu toggle checkbox untuk mobile -->
-            <input type="checkbox" id="menu-toggle" style="display: none;">
-            
-            <!-- Hamburger menu dengan CSS-only toggle -->
-            <label for="menu-toggle" class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
+            <!-- Container untuk search dan hamburger -->
+            <div class="header-controls">
+                <!-- Mobile search box -->
+                <div class="mobile-search">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="mobile-search-input" placeholder="search">
+                    </div>
+                </div>
+                
+                <!-- Hamburger menu -->
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
             
             <nav>
                 <ul>
@@ -196,79 +204,6 @@
         <p>&copy;2025 RefoFaito. All rights reserved.</p>
     </footer>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchInput = document.getElementById('portfolio-search');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-        const noResultsMsg = document.getElementById('no-results');
-        
-        // Fungsi pencarian
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            let hasVisibleItems = false;
-            
-            // Reset tampilan "tidak ada hasil"
-            noResultsMsg.style.display = 'none';
-            
-            // Jika pencarian kosong, tampilkan semua item
-            if (searchTerm === '') {
-                portfolioItems.forEach(item => {
-                    item.style.display = 'block';
-                });
-                return;
-            }
-            
-            // Filter berdasarkan kata kunci pencarian
-            portfolioItems.forEach(item => {
-                const keywords = item.getAttribute('data-keywords').toLowerCase();
-                
-                if (keywords.includes(searchTerm)) {
-                    item.style.display = 'block';
-                    hasVisibleItems = true;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            
-            // Tampilkan pesan jika tidak ada hasil yang cocok
-            if (!hasVisibleItems) {
-                noResultsMsg.style.display = 'block';
-            }
-        });
-        
-        // Tambahkan efek fokus pada search box
-        searchInput.addEventListener('focus', function() {
-            this.parentElement.classList.add('focused');
-        });
-        
-        searchInput.addEventListener('blur', function() {
-            this.parentElement.classList.remove('focused');
-        });
-        
-        // Tambahkan efek ripple pada tombol see more
-        const addRippleEffect = (button) => {
-            button.addEventListener('click', function(e) {
-                const x = e.clientX - e.target.getBoundingClientRect().left;
-                const y = e.clientY - e.target.getBoundingClientRect().top;
-                
-                const ripple = document.createElement('span');
-                ripple.classList.add('ripple-effect');
-                ripple.style.left = `${x}px`;
-                ripple.style.top = `${y}px`;
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        };
-        
-        // Terapkan efek ripple pada semua tombol see more
-        document.querySelectorAll('.see-more').forEach(button => {
-            addRippleEffect(button);
-        });
-    });
-    </script>
+    <script src="javascript/portofolio.js"></script>
 </body>
 </html>

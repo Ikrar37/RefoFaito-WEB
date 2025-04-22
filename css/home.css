@@ -1290,3 +1290,16 @@
   transform: translateX(-50%);
   border-radius: 3px;
 }
+
+@media (max-width: 768px) {
+  body {
+    background-image: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-color) 100%);
+    background-size: initial;
+    background-position: initial;
+    background-attachment: initial;
+  }
+  
+  .animate-bg {
+    animation: none;
+  }
+}
