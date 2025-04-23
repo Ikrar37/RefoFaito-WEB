@@ -3,7 +3,7 @@
     flex: 1;
     padding: 50px 0;
     background-color: #ecf2f7; /* Warna dasar sebagai fallback */
-    background-image: linear-gradient(rgba(236, 242, 247, 0.92), rgba(236, 242, 247, 0.92)), url('../image/tes.jpg');
+    background-image: linear-gradient(rgba(236, 242, 247, 0.92), rgba(236, 242, 247, 0.92)), url('../image/tes.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
