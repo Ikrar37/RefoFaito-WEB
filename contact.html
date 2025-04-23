@@ -13,6 +13,128 @@
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     </noscript>
+    <style>
+        /* Perbaikan untuk menu mobile agar tidak menimpa logo */
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 60% !important; /* Mengurangi lebar dari 70% menjadi 60% */
+                height: 100vh;
+                background-color: white;
+                transition: right 0.3s ease;
+                z-index: 99;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            .container {
+                position: relative;
+                overflow: hidden; /* Mencegah menu meluap dari container */
+            }
+            
+            /* Perbaikan posisi logo - geser ke kiri */
+            .logo {
+                z-index: 100 !important; /* Pastikan logo selalu berada di atas menu */
+                position: relative;
+                background-color: transparent; /* Agar tetap terlihat */
+                margin-left: 0; /* Hapus margin kiri */
+                padding-left: 0; /* Hapus padding kiri */
+                text-align: left; /* Pastikan teks sejajar kiri */
+            }
+            
+            /* Pastikan tidak ada padding tambahan yang mendorong logo ke tengah */
+            header .container {
+                justify-content: space-between; /* Pastikan logo dan hamburger terpisah */
+                padding-left: 5px; /* Kurangi padding di sisi kiri */
+            }
+            
+            /* Pastikan menu items selalu dalam container menu */
+            nav ul {
+                padding-top: 60px; /* Beri ruang lebih di atas untuk menghindari tombol close */
+                padding-right: 15px; /* Pastikan teks tidak terlalu dekat dengan tepi kanan */
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+        
+        /* Untuk layar yang lebih kecil, kurangi lebar lebih banyak */
+        @media (max-width: 480px) {
+            nav {
+                width: 55% !important; /* Mengurangi lebar lagi untuk layar yang sangat kecil */
+            }
+        }
+        
+        /* Tambahkan overlay saat menu dibuka */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 98; /* Di bawah nav tapi di atas konten lain */
+        }
+        
+        .menu-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Tombol close untuk menu mobile */
+        .menu-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            z-index: 101;
+            display: none;
+        }
+        
+        .menu-close-btn::before,
+        .menu-close-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #304258;
+            transition: background-color 0.3s ease;
+        }
+        
+        .menu-close-btn::before {
+            transform: rotate(45deg);
+        }
+        
+        .menu-close-btn::after {
+            transform: rotate(-45deg);
+        }
+        
+        .menu-close-btn:hover::before,
+        .menu-close-btn:hover::after {
+            background-color: #2A5BDA;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-close-btn {
+                display: block;
+            }
+            
+            nav.active .menu-close-btn {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body class="loaded other-page">
     <header>
@@ -23,17 +145,16 @@
                 </a>
             </div>
             
-            <!-- Menu toggle checkbox untuk mobile -->
-            <input type="checkbox" id="menu-toggle" style="display: none;">
-            
-            <!-- Hamburger menu dengan CSS-only toggle -->
-            <label for="menu-toggle" class="hamburger">
+            <div class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
-            </label>
+            </div>
             
             <nav>
+                <!-- Tombol Close Menu Mobile -->
+                <div class="menu-close-btn"></div>
+                
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="aboutme.html">About Me</a></li>
@@ -47,7 +168,6 @@
     <div class="blue-bar"></div>
 
     <section class="contact-section">
-        <!-- Particles background dengan CSS -->
         <div class="particles-background"></div>
         
         <div class="contact-title">
@@ -78,18 +198,14 @@
                 </a>
             </div>
 
-            <!-- Notifikasi sukses/error -->
             <div id="formNotification" class="form-notification hidden">
                 <span id="notificationMessage"></span>
                 <button id="closeNotification">&times;</button>
             </div>
             
-            <!-- Form Masukan -->
             <div class="feedback-form">
                 <h3>Berikan Masukan Anda</h3>
-                <!-- Ganti dengan email Anda -->
                 <form id="feedbackForm" action="https://formsubmit.co/muhammadikrar225@gmail.com" method="POST">
-                    <!-- FormSubmit configuration -->
                     <input type="hidden" name="_subject" value="Pesan Baru dari Website RefoFaito">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_captcha" value="false">
@@ -136,7 +252,76 @@
         </div>
     </footer>
 
-    <script src="javascript/contact.js"></script>
-
+    <script>
+    // Script untuk mengaktifkan menu mobile
+    document.addEventListener('DOMContentLoaded', function() {
+        // Buat overlay untuk menu
+        const overlay = document.createElement('div');
+        overlay.className = 'menu-overlay';
+        document.body.appendChild(overlay);
+        
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('header nav');
+        const body = document.body;
+        const closeBtn = document.querySelector('.menu-close-btn');
+        
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            nav.classList.remove('active');
+            overlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+        
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                nav.classList.toggle('active');
+                overlay.classList.toggle('active');
+                
+                // Mencegah scroll body saat menu terbuka
+                if (nav.classList.contains('active')) {
+                    body.style.overflow = 'hidden';
+                } else {
+                    body.style.overflow = '';
+                }
+            });
+            
+            // Tutup menu saat tombol close diklik
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeMenu();
+                });
+            }
+            
+            // Tutup menu saat overlay diklik
+            overlay.addEventListener('click', function() {
+                closeMenu();
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+            
+            // Close menu when clicking menu items
+            const menuItems = document.querySelectorAll('nav a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    closeMenu();
+                });
+            });
+        }
+        
+        // Load original contact.js script if it exists
+        const originalScript = document.createElement('script');
+        originalScript.src = 'javascript/contact.js';
+        document.body.appendChild(originalScript);
+    });
+    </script>
 </body>
 </html>

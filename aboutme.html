@@ -14,7 +14,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     </noscript>
     <style>
-        /* Tambahan style untuk animasi ripple */
         body {
             font-family: 'Montserrat', sans-serif;
         }
@@ -39,13 +38,68 @@
             animation-play-state: running !important;
         }
         
-        /* Tambahan animation untuk smooth hover */
         .hover-tilt {
             transition: transform 0.3s ease;
         }
         
         .hover-tilt:hover {
             transform: perspective(500px) rotateX(5deg) rotateY(5deg) scale(1.05);
+        }
+        
+        /* Perbaikan untuk menu mobile agar tidak menimpa logo */
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 60%; /* Mengurangi lebar dari 70% menjadi 60% */
+                height: 100vh;
+                background-color: white;
+                transition: right 0.3s ease;
+                z-index: 99;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            .container {
+                position: relative;
+                overflow: hidden; /* Mencegah menu meluap dari container */
+                padding: 0 15px; /* Pastikan ada padding untuk container */
+            }
+            
+            /* Perbaikan posisi logo - geser ke kiri */
+            .logo {
+                z-index: 100; /* Pastikan logo selalu berada di atas menu */
+                position: relative;
+                background-color: transparent; /* Agar tetap terlihat */
+                margin-left: 0; /* Hapus margin kiri */
+                padding-left: 0; /* Hapus padding kiri */
+                text-align: left; /* Pastikan teks sejajar kiri */
+            }
+            
+            /* Pastikan tidak ada padding tambahan yang mendorong logo ke tengah */
+            header .container {
+                justify-content: space-between; /* Pastikan logo dan hamburger terpisah */
+                padding-left: 5px; /* Kurangi padding di sisi kiri */
+            }
+            
+            /* Pastikan menu items selalu dalam container menu */
+            nav ul {
+                padding-top: 60px; /* Beri ruang lebih di atas untuk menghindari tombol close */
+                padding-right: 15px; /* Pastikan teks tidak terlalu dekat dengan tepi kanan */
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+        
+        /* Untuk layar yang lebih kecil, kurangi lebar lebih banyak */
+        @media (max-width: 480px) {
+            nav {
+                width: 55%; /* Mengurangi lebar lagi untuk layar yang sangat kecil */
+            }
         }
     </style>
 </head>
@@ -143,8 +197,42 @@
         </div>
     </footer>
 
-    <script src="javascript/humbermenu.js"></script>
-    <script src="javascript/about-animations.js"></script>
-    <script src="javascript/common.js"></script>
+    <script>
+    // Script untuk menu hamburger
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('header nav');
+        
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                }
+            });
+            
+            // Close menu when clicking menu items
+            const menuItems = document.querySelectorAll('nav a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+        }
+        
+        // Animation for list items
+        document.querySelectorAll('.animated-list li').forEach((li, index) => {
+            li.style.setProperty('--li-index', index);
+        });
+    });
+    </script>
 </body>
 </html>

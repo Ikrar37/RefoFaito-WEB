@@ -16,7 +16,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     </noscript>
     <style>
-        /* Tambahan style untuk animasi ripple */
         body {
             font-family: 'Montserrat', sans-serif;
         }
@@ -37,13 +36,138 @@
             }
         }
         
-        /* Tambahan animation untuk smooth hover */
         .hover-tilt {
             transition: transform 0.4s ease;
         }
         
         .hover-tilt:hover {
             transform: perspective(500px) rotateX(5deg) rotateY(5deg) scale(1.05);
+        }
+        
+        /* Sembunyikan tombol search di dalam menu mobile */
+        @media (max-width: 768px) {
+            .nav-search {
+                display: none !important;
+            }
+            
+            /* Perbaikan untuk menu mobile agar tidak menimpa logo */
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 60% !important; /* Mengurangi lebar dari 70% menjadi 60% */
+                height: 100vh;
+                background-color: white;
+                transition: right 0.3s ease;
+                z-index: 99;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            .container {
+                position: relative;
+                overflow: hidden; /* Mencegah menu meluap dari container */
+            }
+            
+            /* Perbaikan posisi logo - geser ke kiri */
+            .logo {
+                z-index: 100 !important; /* Pastikan logo selalu berada di atas menu */
+                position: relative;
+                background-color: transparent; /* Agar tetap terlihat */
+                margin-left: 0; /* Hapus margin kiri */
+                padding-left: 0; /* Hapus padding kiri */
+                text-align: left; /* Pastikan teks sejajar kiri */
+            }
+            
+            /* Pastikan tidak ada padding tambahan yang mendorong logo ke tengah */
+            header .container {
+                justify-content: space-between; /* Pastikan logo dan hamburger terpisah */
+                padding-left: 5px; /* Kurangi padding di sisi kiri */
+            }
+            
+            /* Pastikan menu items selalu dalam container menu */
+            nav ul {
+                padding-top: 60px; /* Beri ruang lebih di atas untuk menghindari tombol close */
+                padding-right: 15px; /* Pastikan teks tidak terlalu dekat dengan tepi kanan */
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+        
+        /* Untuk layar yang lebih kecil, kurangi lebar lebih banyak */
+        @media (max-width: 480px) {
+            nav {
+                width: 55% !important; /* Mengurangi lebar lagi untuk layar yang sangat kecil */
+            }
+        }
+        
+        /* Tambahkan overlay saat menu dibuka */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 98; /* Di bawah nav tapi di atas konten lain */
+        }
+        
+        .menu-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Tombol close untuk menu mobile */
+        .menu-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            z-index: 101;
+            display: none;
+        }
+        
+        .menu-close-btn::before,
+        .menu-close-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #304258;
+            transition: background-color 0.3s ease;
+        }
+        
+        .menu-close-btn::before {
+            transform: rotate(45deg);
+        }
+        
+        .menu-close-btn::after {
+            transform: rotate(-45deg);
+        }
+        
+        .menu-close-btn:hover::before,
+        .menu-close-btn:hover::after {
+            background-color: #2A5BDA;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-close-btn {
+                display: block;
+            }
+            
+            nav.active .menu-close-btn {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -56,9 +180,7 @@
                 </a>
             </div>
             
-            <!-- Container untuk search dan hamburger -->
             <div class="header-controls">
-                <!-- Mobile search box -->
                 <div class="mobile-search">
                     <div class="search-box">
                         <i class="fas fa-search"></i>
@@ -66,7 +188,6 @@
                     </div>
                 </div>
                 
-                <!-- Hamburger menu -->
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -75,13 +196,15 @@
             </div>
             
             <nav>
+                <!-- Tombol Close Menu Mobile -->
+                <div class="menu-close-btn"></div>
+                
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="aboutme.html">About Me</a></li>
                     <li><a href="portofolio.html" class="active" style="color: #4a90e2; font-weight: bold;">Portofolio</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     
-                    <!-- Search Box di navbar setelah item contact -->
                     <li class="nav-search">
                         <div class="search-box">
                             <i class="fas fa-search"></i>
@@ -192,18 +315,192 @@
                 </div>
             </div>
             
-            <!-- Message for no results -->
             <div id="no-results" class="no-results-message" style="display: none;">
                 Tidak ada hasil ditemukan
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy;2025 RefoFaito. All rights reserved.</p>
     </footer>
 
-    <script src="javascript/portofolio.js"></script>
+    <script>
+    // Script untuk menu hamburger dan mobile search
+    document.addEventListener('DOMContentLoaded', function() {
+        // Buat overlay untuk menu
+        const overlay = document.createElement('div');
+        overlay.className = 'menu-overlay';
+        document.body.appendChild(overlay);
+        
+        // Setup search functionality
+        const searchInput = document.getElementById('portfolio-search');
+        const mobileSearchInput = document.getElementById('mobile-search-input');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const noResultsMsg = document.getElementById('no-results');
+        const mobileSearchBox = document.querySelector('.mobile-search .search-box');
+        
+        // Fungsi untuk menjalankan pencarian
+        function performSearch(term) {
+            const searchTerm = term.toLowerCase().trim();
+            let hasVisibleItems = false;
+            
+            // Reset tampilan "tidak ada hasil"
+            if (noResultsMsg) {
+                noResultsMsg.style.display = 'none';
+            }
+            
+            // Jika pencarian kosong, tampilkan semua item
+            if (searchTerm === '') {
+                portfolioItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                return;
+            }
+            
+            // Filter berdasarkan kata kunci pencarian
+            portfolioItems.forEach(item => {
+                const keywords = item.getAttribute('data-keywords').toLowerCase();
+                
+                if (keywords.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasVisibleItems = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Tampilkan pesan jika tidak ada hasil yang cocok
+            if (!hasVisibleItems && noResultsMsg) {
+                noResultsMsg.style.display = 'block';
+            }
+        }
+        
+        // Sinkronkan input pencarian
+        if (searchInput && mobileSearchInput) {
+            searchInput.addEventListener('input', function() {
+                mobileSearchInput.value = this.value;
+                performSearch(this.value);
+            });
+            
+            mobileSearchInput.addEventListener('input', function() {
+                searchInput.value = this.value;
+                performSearch(this.value);
+            });
+        } else if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                performSearch(this.value);
+            });
+        } else if (mobileSearchInput) {
+            mobileSearchInput.addEventListener('input', function() {
+                performSearch(this.value);
+            });
+        }
+        
+        // Toggle expand/collapse mobile search
+        if (mobileSearchBox) {
+            const mobileSearchIcon = document.querySelector('.mobile-search .fa-search');
+            if (mobileSearchIcon) {
+                mobileSearchIcon.addEventListener('click', function(e) {
+                    if (!mobileSearchBox.classList.contains('expanded')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        mobileSearchBox.classList.add('expanded');
+                        mobileSearchInput.focus();
+                    }
+                });
+                
+                // Collapse search when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (mobileSearchBox.classList.contains('expanded') && 
+                        !mobileSearchBox.contains(e.target)) {
+                        mobileSearchBox.classList.remove('expanded');
+                    }
+                });
+            }
+        }
+        
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('header nav');
+        const body = document.body;
+        const closeBtn = document.querySelector('.menu-close-btn');
+        
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            nav.classList.remove('active');
+            overlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+        
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                nav.classList.toggle('active');
+                overlay.classList.toggle('active');
+                
+                // Mencegah scroll body saat menu terbuka
+                if (nav.classList.contains('active')) {
+                    body.style.overflow = 'hidden';
+                } else {
+                    body.style.overflow = '';
+                }
+            });
+            
+            // Tutup menu saat tombol close diklik
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeMenu();
+                });
+            }
+            
+            // Tutup menu saat overlay diklik
+            overlay.addEventListener('click', function() {
+                closeMenu();
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+            
+            // Close menu when clicking menu items
+            const menuItems = document.querySelectorAll('nav a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    closeMenu();
+                });
+            });
+        }
+        
+        // Tambahkan efek ripple pada tombol see more
+        const addRippleEffect = (button) => {
+            button.addEventListener('click', function(e) {
+                const x = e.clientX - e.target.getBoundingClientRect().left;
+                const y = e.clientY - e.target.getBoundingClientRect().top;
+                
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        };
+        
+        // Terapkan efek ripple pada semua tombol see more
+        document.querySelectorAll('.see-more').forEach(button => {
+            addRippleEffect(button);
+        });
+    });
+    </script>
 </body>
 </html>

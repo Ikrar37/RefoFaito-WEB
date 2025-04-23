@@ -21,7 +21,89 @@
     </noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        /* Perbaikan untuk menu mobile agar tidak menimpa logo */
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 60% !important; /* Mengurangi lebar dari 70% menjadi 60% */
+                height: 100vh;
+                background-color: white;
+                transition: right 0.3s ease;
+                z-index: 99;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            .container {
+                position: relative;
+                overflow: hidden; /* Mencegah menu meluap dari container */
+            }
+            
+            /* Perbaikan posisi logo - geser ke kiri */
+            .logo {
+                z-index: 100 !important; /* Pastikan logo selalu berada di atas menu */
+                position: relative;
+                background-color: transparent; /* Agar tetap terlihat */
+                margin-left: 0; /* Hapus margin kiri */
+                padding-left: 0; /* Hapus padding kiri */
+                text-align: left; /* Pastikan teks sejajar kiri */
+            }
+            
+            /* Pastikan tidak ada padding tambahan yang mendorong logo ke tengah */
+            header .container {
+                justify-content: space-between; /* Pastikan logo dan hamburger terpisah */
+                padding-left: 5px; /* Kurangi padding di sisi kiri */
+            }
+            
+            /* Pastikan menu items selalu dalam container menu */
+            nav ul {
+                padding-top: 60px; /* Beri ruang lebih di atas untuk menghindari tombol close */
+                padding-right: 15px; /* Pastikan teks tidak terlalu dekat dengan tepi kanan */
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            /* Hapus fokus tombol hamburger */
+            .hamburger, #menu-toggle {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+        
+        /* Untuk layar yang lebih kecil, kurangi lebar lebih banyak */
+        @media (max-width: 480px) {
+            nav {
+                width: 55% !important; /* Mengurangi lebar lagi untuk layar yang sangat kecil */
+            }
+        }
+        
+        /* Tambahkan overlay saat menu dibuka */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 98; /* Di bawah nav tapi di atas konten lain */
+        }
+        
+        .menu-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
 </head>
+
 <body class="animate-bg">
     <header>
         <div class="container">
@@ -31,15 +113,11 @@
                 </a>
             </div>
             
-            <!-- Menu toggle checkbox untuk mobile -->
-            <input type="checkbox" id="menu-toggle" style="display: none;">
-            
-            <!-- Hamburger menu dengan CSS-only toggle -->
-            <label for="menu-toggle" class="hamburger" aria-label="Toggle Menu">
+            <div class="hamburger" aria-label="Toggle Menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </label>
+            </div>
             
             <nav aria-label="Main Navigation">
                 <ul>
@@ -54,9 +132,7 @@
 
     <main class="main-content">
         <section class="hero">
-            <!-- Container partikel dengan CSS -->
             <div class="particles"></div>
-            
             <div class="hero-content animate__animated animate__zoomIn animate__delay-1s">
                 <h2 class="animate__animated animate__fadeInDown animate__delay-1s"><span class="greeting">Hello! I'm</span> Muhammad Ikrar</h2>
                 <p class="animate__animated animate__fadeInUp animate__delay-1s">Website ini merupakan portofolio pribadi yang mencerminkan minat saya <br> di bidang Digital Marketing dan 
@@ -100,7 +176,6 @@
             </div>
         </section>
 
-        <!-- SKILLS BADGES SECTION -->
 <section class="skills-section">
     <div class="container">
         <div class="skills-title">
@@ -109,7 +184,7 @@
         <div class="skills-container">
             <div class="skill-badge skill-html" style="--skill-index: 1">
                 <div class="skill-icon">
-                    <img src="/image/logohtml.png" alt="HTML5">
+                    <img src="image/logohtml.png" alt="HTML5">
                 </div>
                 <div class="skill-name">HTML</div>
             </div>
@@ -152,7 +227,6 @@
     </div>
 </section>
 
-        <!-- SECTION TESTIMONIAL -->
         <section class="testimonials">
             <div class="container">
                 <h2>Apa Kata Mereka?</h2>
@@ -223,7 +297,6 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 RefoFaito. All rights reserved.</p>
-            <!-- Added sparkle elements -->
             <span class="sparkle"></span>
             <span class="sparkle"></span>
             <span class="sparkle"></span>
@@ -231,17 +304,66 @@
         </div>
     </footer>
 
-    <!-- JavaScript for improved functionality -->
     <script>
-        // Buat website lebih interaktif dengan JS
         document.addEventListener('DOMContentLoaded', function() {
-            // Tambahkan class loaded ke body untuk animasi
             document.body.classList.add('loaded');
             
-            // Inisialisasi slider testimonial
-            initTestimonialSlider();
+            // Buat overlay untuk menu
+            const overlay = document.createElement('div');
+            overlay.className = 'menu-overlay';
+            document.body.appendChild(overlay);
             
-            // Tambahkan event listener untuk animasi header saat scroll
+            // Menu hamburger toggle
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('header nav');
+            const body = document.body;
+            
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    nav.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                    
+                    // Mencegah scroll body saat menu terbuka
+                    if (nav.classList.contains('active')) {
+                        body.style.overflow = 'hidden';
+                    } else {
+                        body.style.overflow = '';
+                    }
+                });
+                
+                // Tutup menu saat overlay diklik
+                overlay.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                    overlay.classList.remove('active');
+                    body.style.overflow = '';
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = '';
+                    }
+                });
+                
+                // Close menu when clicking menu items
+                const menuItems = document.querySelectorAll('nav a');
+                menuItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                        overlay.classList.remove('active');
+                        body.style.overflow = '';
+                    });
+                });
+            }
+            
+            // Header scroll effect
             window.addEventListener('scroll', function() {
                 const header = document.querySelector('header');
                 if (window.scrollY > 50) {
@@ -251,23 +373,10 @@
                 }
             });
             
-            // Event listener untuk mobile navigation
-            const menuToggle = document.getElementById('menu-toggle');
-            const nav = document.querySelector('nav');
-            const hamburger = document.querySelector('.hamburger');
-            
-            menuToggle.addEventListener('change', function() {
-                if (this.checked) {
-                    nav.classList.add('active');
-                    hamburger.classList.add('active');
-                } else {
-                    nav.classList.remove('active');
-                    hamburger.classList.remove('active');
-                }
-            });
+            // Initialize testimonial slider
+            initTestimonialSlider();
         });
         
-        // Testimonial Slider with improved functionality
         let slideIndex = 1;
         let slideInterval;
         
@@ -277,7 +386,6 @@
                 showSlide(slideIndex);
                 startAutoSlide();
                 
-                // Event listeners for testimonial interaction
                 const testimonialSection = document.querySelector('.testimonials');
                 
                 if (testimonialSection) {
@@ -309,13 +417,11 @@
             
             if (slides.length === 0 || dots.length === 0) return;
             
-            // Add previous class to current slide for exit animation
             for (i = 0; i < slides.length; i++) {
                 if (slides[i].classList.contains('active')) {
                     slides[i].classList.remove('active');
                     slides[i].classList.add('prev');
                     
-                    // Remove 'prev' class after animation completes
                     setTimeout(function() {
                         for (let j = 0; j < slides.length; j++) {
                             if (slides[j].classList.contains('prev')) {
@@ -328,28 +434,23 @@
                 }
             }
             
-            // Reset ke slide pertama jika melebihi jumlah slide
             if (n > slides.length) {slideIndex = 1}
             
-            // Kembali ke slide terakhir jika kurang dari 1
             if (n < 1) {slideIndex = slides.length}
             
-            // Deaktifkan semua dots
             for (i = 0; i < dots.length; i++) {
                 dots[i].classList.remove("active");
             }
             
-            // Tampilkan slide yang dipilih
             slides[slideIndex-1].classList.add("active");
             
-            // Aktifkan dot yang sesuai
             dots[slideIndex-1].classList.add("active");
         }
 
         function startAutoSlide() {
             slideInterval = setInterval(function() {
                 changeSlide(1);
-            }, 5000); // Ganti slide setiap 5 detik
+            }, 5000);
         }
 
         function resetAutoSlide() {
