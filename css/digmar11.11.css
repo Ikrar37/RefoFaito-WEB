@@ -275,6 +275,17 @@ footer p {
     }
 }
 
+/* Menghapus background image pada mobile */
+@media (max-width: 768px) {
+    .portfolio-section::before {
+        background-image: none; /* Hapus background image */
+    }
+    
+    .portfolio-section {
+        background-color: rgba(230, 240, 250, 1); /* Warna dasar tanpa transparansi */
+    }
+}
+
 @media (max-width: 600px) {
     .portfolio-image img {
         max-width: 80%;
@@ -285,3 +296,20 @@ footer p {
         padding: 10px 25px;
     }
 }
+
+/* Animasi untuk header - sama seperti halaman lain */
+@keyframes headerSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Header styling untuk animasi */
+  body.loaded header {
+    animation: headerSlideDown 0s ease-out forwards;
+  }

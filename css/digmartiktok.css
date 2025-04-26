@@ -261,6 +261,17 @@ footer p {
     font-weight: 400;
 }
 
+/* Menghapus background image pada mobile */
+@media (max-width: 768px) {
+    .digital-section::before {
+        background-image: none; /* Hapus background image */
+    }
+    
+    .digital-section {
+        background-color: rgba(230, 240, 250, 1); /* Warna dasar tanpa transparansi */
+    }
+}
+
 /* Responsive design */
 @media (max-width: 900px) {
     .digital-video video {
@@ -343,3 +354,20 @@ footer p {
         max-width: 85%;
     }
 }
+
+/* Animasi untuk header - sama seperti halaman lain */
+@keyframes headerSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Header styling untuk animasi */
+  body.loaded header {
+    animation: headerSlideDown 0s ease-out forwards;
+  }

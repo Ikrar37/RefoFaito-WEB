@@ -1303,3 +1303,16 @@
     animation: none;
   }
 }
+
+/* Definisi animasi simpleFadeIn untuk header */
+@keyframes simpleFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Animasi untuk header saat halaman dimuat */
+body.loaded header {
+  opacity: 0;
+  animation: simpleFadeIn 0.8s ease-out forwards;
+}
+

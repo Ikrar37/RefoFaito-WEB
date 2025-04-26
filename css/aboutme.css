@@ -401,7 +401,14 @@ html {
     }
 }
 
+/* Menghapus background image pada mobile */
 @media (max-width: 768px) {
+    .about-section {
+        background-image: none; /* Hapus background image */
+        background-color: #ecf2f7; /* Tetap gunakan warna yang sama */
+        background-attachment: initial; /* Reset background attachment */
+    }
+    
     .skills-experience {
         flex-direction: column;
         gap: 30px;
@@ -478,3 +485,20 @@ html {
     margin-left: 0;
     padding-left: 20px;
 }
+
+/* Animasi untuk header - sama seperti halaman lain */
+@keyframes headerSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Header styling untuk animasi */
+  body.loaded header {
+    animation: headerSlideDown 0s ease-out forwards;
+  }

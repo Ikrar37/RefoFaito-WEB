@@ -421,6 +421,14 @@
     }
 }
 
+/* Menghapus background image pada mobile */
+@media (max-width: 768px) {
+    .portfolio-section {
+        background-image: none; /* Hapus background image */
+        background-color: #ecf2f7; /* Warna dasar tanpa transparansi */
+    }
+}
+
 @media (max-width: 900px) {
     .portfolio-grid {
         grid-template-columns: 1fr;
