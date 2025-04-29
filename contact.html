@@ -134,6 +134,72 @@
                 display: block;
             }
         }
+        
+        /* Styles for notification */
+        .form-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 15px;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: auto;
+            max-width: 200px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.2;
+            z-index: 1000;
+            opacity: 1;
+        }
+
+        .form-notification.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-50%) translateY(20px);
+        }
+
+        .form-notification.success {
+            background-color: #4CAF50;
+        }
+
+        .form-notification.error {
+            background-color: #f44336;
+        }
+
+        #closeNotification {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            margin-left: 6px;
+            padding: 0 2px;
+            line-height: 1;
+        }
+
+        /* Animation for notification appearing */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .form-notification:not(.hidden) {
+            animation: slideIn 0.3s ease forwards;
+            transform: translateX(-50%) translateY(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
     </style>
 </head>
 <body class="loaded other-page">
@@ -205,12 +271,7 @@
             
             <div class="feedback-form">
                 <h3>Berikan Masukan Anda</h3>
-                <form id="feedbackForm" action="https://formsubmit.co/muhammadikrar225@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="Pesan Baru dari Website RefoFaito">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html">
-                    
+                <form id="feedbackForm">
                     <div class="form-group">
                         <label for="name">Nama</label>
                         <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
@@ -316,6 +377,35 @@
                 });
             });
         }
+        
+        // Form notifikasi script
+        const feedbackForm = document.getElementById('feedbackForm');
+        const formNotification = document.getElementById('formNotification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        const closeNotification = document.getElementById('closeNotification');
+        
+        // Form submission handler
+        feedbackForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent actual form submission
+            
+            // Show success notification
+            notificationMessage.textContent = 'Pesan terkirim!';
+            formNotification.classList.remove('hidden');
+            formNotification.classList.add('success');
+            
+            // Reset form fields
+            feedbackForm.reset();
+            
+            // Hide notification after 5 seconds
+            setTimeout(function() {
+                formNotification.classList.add('hidden');
+            }, 5000);
+        });
+        
+        // Close notification button
+        closeNotification.addEventListener('click', function() {
+            formNotification.classList.add('hidden');
+        });
         
         // Load original contact.js script if it exists
         const originalScript = document.createElement('script');
